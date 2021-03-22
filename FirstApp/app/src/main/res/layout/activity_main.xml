@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+         <ImageButton
+             android:id="@+id/helloButton"
+             android:layout_width="100dp"
+             android:layout_height="100dp"
+
+             android:onClick="onBtnPrev"
+             android:background="@drawable/prev_button_selector"
+             android:padding="0dp"
+
+
+             />
+        <TextView
+            android:id="@+id/mainTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Hello World!"
+            android:textSize="40sp"
+
+            android:gravity="center"
+
+            />
+
+        <ImageButton
+            android:id="@+id/worldButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:background="@drawable/next_button_selector"
+            android:onClick="onBtnNext"
+            android:padding="0dp"
+
+            />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/mainImageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@mipmap/cat1" />
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
