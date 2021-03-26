@@ -9,16 +9,19 @@ import android.view.View;
 
 public class MyView extends View {
     private static final String TAG = MyView.class.getSimpleName();
+    private Paint paint = new Paint();
+    private Rect rect = new Rect();
 
     public MyView(Context context) {
         super(context);
+        paint.setColor(0xff0055ff);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(0xff0055ff);
-        Rect rect = new Rect(10, 20, 300, 400);
+        int w = getWidth();
+        int h = getHeight();
+        rect.set(0, 0, w, h);
         Log.d(TAG, "drawing " + rect);
         canvas.drawRect(rect, paint);
     }
