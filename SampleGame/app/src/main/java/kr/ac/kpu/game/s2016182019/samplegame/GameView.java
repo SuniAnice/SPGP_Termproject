@@ -19,6 +19,8 @@ public class GameView extends View {
     private Bitmap bitmap;
     private float x;
     private float y;
+    private long lastFrame;
+    private float frameTime;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -32,15 +34,21 @@ public class GameView extends View {
 
     private void doGameFrame() {
 //        update();
-        x += 1;
-        y += 2;
+        x += 100 * frameTime;
+        y += 200 * frameTime;
 //        draw();
         invalidate();
 
         Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
             @Override
-            public void doFrame(long l) {
+            public void doFrame(long time) {
+                if (lastFrame == 0){
+                    lastFrame = time;
+                }
+                frameTime = (float) (time - lastFrame) / 1_000_000_000;
                 doGameFrame();
+                lastFrame = time;
+
             }
         });
 
@@ -62,6 +70,6 @@ public class GameView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(bitmap, x, y, null);
-        Log.d(TAG, "Drawing at: " + x + "," + y);
+        Log.d(TAG, "Drawing at: " + x + "," + y + " FrameTime = " + frameTime);
     }
 }
