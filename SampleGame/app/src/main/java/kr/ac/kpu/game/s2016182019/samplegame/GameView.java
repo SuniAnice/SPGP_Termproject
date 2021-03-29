@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Choreographer;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -36,12 +37,19 @@ public class GameView extends View {
 //        draw();
         invalidate();
 
-        postDelayed(new Runnable() {
+        Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
             @Override
-            public void run() {
+            public void doFrame(long l) {
                 doGameFrame();
             }
-        },15);
+        });
+
+//        postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                doGameFrame();
+//            }
+//        },15);
     }
 
     private void initResources() {
