@@ -64,8 +64,8 @@ public class GameView extends View {
     }
 
     private void initResources() {
-        b1 = new Ball(100, 100, 100, 200);
-        b2 = new Ball(800, 1500, -50, -100);
+        b1 = new Ball(100, 100, 200, 400);
+        b2 = new Ball(800, 1500, -150, -600);
     }
 
     @Override
