@@ -1,12 +1,8 @@
 package kr.ac.kpu.game.s2016182019.samplegame;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Choreographer;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +11,6 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Handler;
 
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
@@ -25,7 +20,8 @@ public class GameView extends View {
     public static float frameTime;
     public static GameView view;
 
-    ArrayList<Ball> balls = new ArrayList<>();
+//    ArrayList<Ball> balls = new ArrayList<>();
+    ArrayList<GameObject> objects = new ArrayList<>();
     Player player;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
@@ -41,10 +37,9 @@ public class GameView extends View {
 
     private void doGameFrame() {
 //        update();
-        for (Ball b : balls) {
-            b.update();
+        for (GameObject o : objects) {
+            o.update();
         }
-        player.update();
 
 //        draw();
         invalidate();
@@ -79,16 +74,16 @@ public class GameView extends View {
             float dx = rand.nextFloat() * 1000 - 500;
             float dy = rand.nextFloat() * 1000 - 500;
             Ball b = new Ball(x, y, dx, dy);
-            balls.add(b);
+            objects.add(b);
         }
+        objects.add(player);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        for (Ball b : balls) {
-            b.draw(canvas);
+        for (GameObject o : objects) {
+            o.draw(canvas);
         }
-        player.draw(canvas);
     }
 
     @Override
