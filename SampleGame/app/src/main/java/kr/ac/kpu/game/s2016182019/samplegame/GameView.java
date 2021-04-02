@@ -21,6 +21,8 @@ public class GameView extends View {
     private float y;
     private long lastFrame;
     private float frameTime;
+    private float x2;
+    private float y2;
 
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -36,6 +38,8 @@ public class GameView extends View {
 //        update();
         x += 100 * frameTime;
         y += 200 * frameTime;
+        x2 -= 50 * frameTime;
+        y2 -= 100 * frameTime;
 //        draw();
         invalidate();
 
@@ -65,11 +69,14 @@ public class GameView extends View {
         bitmap = BitmapFactory.decodeResource(res, R.mipmap.soccer_ball_240);
         x = 100;
         y = 100;
+        x2 = 800;
+        y2 = 1500;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(bitmap, x, y, null);
+        canvas.drawBitmap(bitmap, x2, y2, null);
         Log.d(TAG, "Drawing at: " + x + "," + y + " FrameTime = " + frameTime);
     }
 }
