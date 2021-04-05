@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016182019.samplegame;
+package kr.ac.kpu.game.s2016182019.samplegame.ui.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,6 +11,10 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import kr.ac.kpu.game.s2016182019.samplegame.game.Ball;
+import kr.ac.kpu.game.s2016182019.samplegame.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.samplegame.game.Player;
 
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();

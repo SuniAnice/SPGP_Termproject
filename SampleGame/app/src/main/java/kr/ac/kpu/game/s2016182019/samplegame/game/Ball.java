@@ -1,9 +1,13 @@
-package kr.ac.kpu.game.s2016182019.samplegame;
+package kr.ac.kpu.game.s2016182019.samplegame.game;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+
+import kr.ac.kpu.game.s2016182019.samplegame.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.samplegame.R;
+import kr.ac.kpu.game.s2016182019.samplegame.ui.view.GameView;
 
 public class Ball implements GameObject {
     private static int imageWidth;
