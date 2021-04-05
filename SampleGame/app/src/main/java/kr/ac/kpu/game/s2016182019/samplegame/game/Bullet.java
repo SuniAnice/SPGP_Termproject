@@ -45,11 +45,16 @@ public class Bullet implements GameObject {
         int w = GameView.view.getWidth();
         int h = GameView.view.getHeight();
 
+        boolean toBeDeleted = false;
+
         if (x < 0 || x > w - imageWidth) {
-            dx *= -1;
+            toBeDeleted = true;
         }
         if (y < 0 || y > h - imageHeight) {
-            dy *= -1;
+            toBeDeleted = true;
+        }
+        if (toBeDeleted) {
+            game.remove(this);
         }
     }
 
