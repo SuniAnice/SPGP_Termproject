@@ -7,12 +7,14 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import java.util.HashMap;
+
 import kr.ac.kpu.game.s2016182019.samplegame.R;
 import kr.ac.kpu.game.s2016182019.samplegame.ui.view.GameView;
 
 public class AnimationGameBitmap extends GameBitmap {
     public static final int PIXEL_MULTIPLIER = 4;
-    private final Bitmap bitmap;
+    private Bitmap bitmap;
     private final int imageWidth;
     private final int imageHeight;
     private final int frameWidth;
@@ -22,11 +24,7 @@ public class AnimationGameBitmap extends GameBitmap {
     private int frameIndex;
 
     public AnimationGameBitmap(int resId, float framesPerSecond, int frameCount) {
-        Resources res = GameView.view.getResources();
-        BitmapFactory.Options opts = new BitmapFactory.Options();
-        opts.inScaled = false;
-        bitmap = BitmapFactory.decodeResource(res, resId, opts);
-
+        bitmap = GameBitmap.load(resId);
 
         imageWidth = bitmap.getWidth();
         imageHeight = bitmap.getHeight();
@@ -45,7 +43,7 @@ public class AnimationGameBitmap extends GameBitmap {
 
     }
 
-//    public void update() {
+    //    public void update() {
 //        int elapesd = (int)(System.currentTimeMillis() - createOn);
 //        frameIndex = Math.round(elapesd * framesPerSecond * 0.001f) % frameCount;
 //    }

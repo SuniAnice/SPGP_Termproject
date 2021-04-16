@@ -28,9 +28,9 @@ public class MainGame {
 
     private  boolean initialized;
 
-    public void initResources() {
+    public boolean initResources() {
         if (initialized) {
-            return;
+            return false;
         }
         int w = GameView.view.getWidth();
         int h = GameView.view.getHeight();
@@ -47,6 +47,8 @@ public class MainGame {
         objects.add(player);
 
         initialized = true;
+
+        return true;
     }
 
     public void update() {
