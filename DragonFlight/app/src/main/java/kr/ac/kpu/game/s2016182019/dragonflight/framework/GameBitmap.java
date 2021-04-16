@@ -12,7 +12,7 @@ public class GameBitmap {
     private static HashMap<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
 
 
-    protected static Bitmap load(int resId) {
+    public static Bitmap load(int resId) {
         Bitmap bitmap = bitmaps.get(resId);
         if (bitmap == null){
             Resources res = GameView.view.getResources();

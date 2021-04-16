@@ -14,6 +14,8 @@ public class MainGame {
 
     // singleton
     static MainGame instance;
+    private Player player;
+
     public static MainGame get() {
         if (instance == null) {
             instance = new MainGame();
@@ -34,6 +36,9 @@ public class MainGame {
         int h = GameView.view.getHeight();
 
         //Random rand = new Random();
+
+        player = new Player(w/2, h-300, 0, 0);
+        objects.add(player);
 
         initialized = true;
 
