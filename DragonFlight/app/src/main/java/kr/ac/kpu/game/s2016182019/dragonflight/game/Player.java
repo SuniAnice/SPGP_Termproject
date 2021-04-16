@@ -26,8 +26,8 @@ public class Player implements GameObject {
         this.y = y;
         this.dx = dx;
         this.dy = dy;
-        this.tx = 0;
-        this.ty = 0;
+        this.tx = x;
+        this.ty = y;
         this.speed = 800;
         this.bitmap = GameBitmap.load(R.mipmap.plane_240);
         imageWidth = bitmap.getWidth();
@@ -36,20 +36,27 @@ public class Player implements GameObject {
     }
 
     public void moveTo(float x, float y) {
-
+        this.tx = x;
+//        this.ty = this.y;
+//        MainGame game = MainGame.get();
+//        float move_dist = speed * game.frameTime;
+//        this.dx = (float) (move_dist * Math.cos(angle));
     }
 
     public void update() {
+        MainGame game = MainGame.get();
+        float dx = speed * game.frameTime;
+        if (tx <= x) {
+            dx = -dx;
+        }
         x += dx;
         if ((dx > 0 && x > tx) || (dx < 0 && x < tx)) {
             x = tx;
         }
-        y += dy;
-        if ((dy > 0 && y > ty) || (dy < 0 && y < ty)) {
-            y = ty;
-        }
-
-
+//        y += dy;
+//        if ((dy > 0 && y > ty) || (dy < 0 && y < ty)) {
+//            y = ty;
+//        }
     }
 
     public void draw(Canvas canvas) {
