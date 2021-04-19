@@ -8,7 +8,6 @@ import android.graphics.RectF;
 import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
 
 public class AnimationGameBitmap extends GameBitmap {
-    private Bitmap bitmap;
     private final int imageWidth;
     private final int imageHeight;
     private final int frameWidth;

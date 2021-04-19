@@ -26,7 +26,7 @@ public class GameBitmap {
         return bitmap;
     }
 
-    private final Bitmap bitmap;
+    protected final Bitmap bitmap;
     protected RectF dstRect = new RectF();
 
     public GameBitmap(int resId) {
