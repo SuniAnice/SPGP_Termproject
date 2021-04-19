@@ -17,8 +17,7 @@ public class AnimationGameBitmap extends GameBitmap {
     private int frameIndex;
 
     public AnimationGameBitmap(int resId, float framesPerSecond, int frameCount) {
-        bitmap = GameBitmap.load(resId);
-
+        super(resId);
         imageWidth = bitmap.getWidth();
         imageHeight = bitmap.getHeight();
         if (frameCount == 0) {
@@ -30,10 +29,6 @@ public class AnimationGameBitmap extends GameBitmap {
         frameWidth = imageWidth / frameCount;
         createOn = System.currentTimeMillis();
         frameIndex = 0;
-
-
-
-
     }
 
     //    public void update() {

@@ -11,9 +11,7 @@ import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
 
 public class Bullet implements GameObject {
     private final float x;
-    private final Bitmap bitmap;
-    private final int halfWidth;
-    private final int halfHeight;
+    private final GameBitmap bitmap;
     private float y;
     private final int speed;
 
@@ -22,9 +20,7 @@ public class Bullet implements GameObject {
         this.y = y;
         this.speed = speed;
 
-        this.bitmap = GameBitmap.load(R.mipmap.laser_1);
-        halfWidth = bitmap.getWidth() / 2;
-        halfHeight = bitmap.getHeight() / 2;
+        this.bitmap = new GameBitmap(R.mipmap.laser_1);
     }
     @Override
     public void update() {
@@ -34,15 +30,6 @@ public class Bullet implements GameObject {
 
     @Override
     public void draw(Canvas canvas) {
-        int hw = halfWidth;
-        int hh = halfHeight;
-
-        float dl = x - hw * GameView.MULTIPLIER;
-        float dt = y - hh * GameView.MULTIPLIER;
-        float dr = x + hw * GameView.MULTIPLIER;
-        float db = y + hh * GameView.MULTIPLIER;
-
-        RectF dstRect = new RectF(dl, dt, dr, db);
-        canvas.drawBitmap(bitmap, null, dstRect, null);
+        bitmap.draw(canvas, x, y);
     }
 }
