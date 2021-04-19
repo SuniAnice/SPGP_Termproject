@@ -14,6 +14,8 @@ import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
 
 public class Player implements GameObject {
     private static final int BULLET_SPEED = 1500;
+    private static final float FIRE_INTERVAL = 1.0f / 7.5f;
+    private float fireTime;
     private int imageWidth;
     private int imageHeight;
     private float x, y;
@@ -28,13 +30,11 @@ public class Player implements GameObject {
         this.ty = y;
         this.speed = 800;
         this.bitmap = new GameBitmap(R.mipmap.fighter);
+        this.fireTime = 0.0f;
     }
 
     public void moveTo(float x, float y) {
         this.tx = x;
-        Bullet bullet = new Bullet(this.x, this.y, BULLET_SPEED);
-        MainGame game = MainGame.get();
-        game.add(bullet);
     }
 
     public void update() {
@@ -47,10 +47,17 @@ public class Player implements GameObject {
         if ((dx > 0 && x > tx) || (dx < 0 && x < tx)) {
             x = tx;
         }
-//        y += dy;
-//        if ((dy > 0 && y > ty) || (dy < 0 && y < ty)) {
-//            y = ty;
-//        }
+        fireTime += game.frameTime;
+        if (fireTime >= FIRE_INTERVAL) {
+            fireBullet();
+            fireTime -= FIRE_INTERVAL;
+        }
+    }
+
+    private void fireBullet() {
+        Bullet bullet = new Bullet(this.x, this.y, BULLET_SPEED);
+        MainGame game = MainGame.get();
+        game.add(bullet);
     }
 
     public void draw(Canvas canvas) {
