@@ -10,7 +10,6 @@ import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
 
 public class MainGame {
-    public static final int BALL_COUNT = 10;
 
     // singleton
     static MainGame instance;
@@ -37,7 +36,7 @@ public class MainGame {
 
         //Random rand = new Random();
 
-        player = new Player(w/2, h-300, 0, 0);
+        player = new Player(w/2, h-300);
         objects.add(player);
 
         initialized = true;

@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.RectF;
 
 import kr.ac.kpu.game.s2016182019.dragonflight.R;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameBitmap;
@@ -12,24 +13,21 @@ import kr.ac.kpu.game.s2016182019.dragonflight.framework.Sound;
 import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
 
 public class Player implements GameObject {
+    private static final int BULLET_SPEED = 1500;
     private int imageWidth;
     private int imageHeight;
     private float x, y;
-    private float dx, dy;
     private float tx, ty;
     private float speed;
     private Bitmap bitmap;
-    private float angle = 0;
 
-    public Player(float x, float y, float dx, float dy) {
+    public Player(float x, float y) {
         this.x = x;
         this.y = y;
-        this.dx = dx;
-        this.dy = dy;
         this.tx = x;
         this.ty = y;
         this.speed = 800;
-        this.bitmap = GameBitmap.load(R.mipmap.plane_240);
+        this.bitmap = GameBitmap.load(R.mipmap.fighter);
         imageWidth = bitmap.getWidth();
         imageHeight = bitmap.getHeight();
 
@@ -37,10 +35,9 @@ public class Player implements GameObject {
 
     public void moveTo(float x, float y) {
         this.tx = x;
-//        this.ty = this.y;
-//        MainGame game = MainGame.get();
-//        float move_dist = speed * game.frameTime;
-//        this.dx = (float) (move_dist * Math.cos(angle));
+        Bullet bullet = new Bullet(this.x, this.y, BULLET_SPEED);
+        MainGame game = MainGame.get();
+        game.add(bullet);
     }
 
     public void update() {
@@ -60,12 +57,18 @@ public class Player implements GameObject {
     }
 
     public void draw(Canvas canvas) {
-        float left = x - imageWidth / 2;
-        float top = y - imageHeight / 2;
-//        float degree = (float) (angle * 180 / Math.PI) + 90;
-//        canvas.save();
-//        canvas.rotate(degree, x, y);
-        canvas.drawBitmap(bitmap, left, top, null);
+        float sr = x - imageWidth / 2;
+        float st = y - imageHeight / 2;
+
+        int hw = imageWidth / 2;
+        int hh = imageHeight / 2;
+
+        float dl = x - hw * GameView.MULTIPLIER;
+        float dt = y - hh * GameView.MULTIPLIER;
+        float dr = x + hw * GameView.MULTIPLIER;
+        float db = y + hh * GameView.MULTIPLIER;
+        RectF dstRect = new RectF(dl, dt, dr, db);
+        canvas.drawBitmap(bitmap, null, dstRect, null);
 //        canvas.restore();
 
     }
