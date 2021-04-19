@@ -1,0 +1,7 @@
+package kr.ac.kpu.game.s2016182019.dragonflight.framework;
+
+import android.graphics.RectF;
+
+public interface BoxCollidable {
+    public RectF getBoundingRect();
+}

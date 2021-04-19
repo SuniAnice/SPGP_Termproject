@@ -1,18 +1,14 @@
 package kr.ac.kpu.game.s2016182019.dragonflight.game;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import kr.ac.kpu.game.s2016182019.dragonflight.R;
+import kr.ac.kpu.game.s2016182019.dragonflight.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
-import kr.ac.kpu.game.s2016182019.dragonflight.framework.Sound;
-import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
 
-public class Player implements GameObject {
+public class Player implements GameObject, BoxCollidable {
     private static final int BULLET_SPEED = 1500;
     private static final float FIRE_INTERVAL = 1.0f / 7.5f;
     private float fireTime;
@@ -62,5 +58,10 @@ public class Player implements GameObject {
 
     public void draw(Canvas canvas) {
         bitmap.draw(canvas, x, y);
+    }
+
+    @Override
+    public RectF getBoundingRect() {
+        return bitmap.getBoundingRect(x,y);
     }
 }

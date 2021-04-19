@@ -1,7 +1,6 @@
 package kr.ac.kpu.game.s2016182019.dragonflight.game;
 
 import android.graphics.Canvas;
-import android.util.Log;
 
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
