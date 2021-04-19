@@ -1,26 +1,25 @@
 package kr.ac.kpu.game.s2016182019.dragonflight.game;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.RectF;
 
 import kr.ac.kpu.game.s2016182019.dragonflight.R;
+import kr.ac.kpu.game.s2016182019.dragonflight.framework.AnimationGameBitmap;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
-import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
 
-public class Bullet implements GameObject {
+public class Enemy implements GameObject {
+    private static final float FRAMES_PER_SECOND = 8.0f;
     private final float x;
     private final GameBitmap bitmap;
     private float y;
     private final int speed;
 
-    public Bullet(float x, float y, int speed) {
+    public Enemy(float x, float y, int speed) {
         this.x =x;
         this.y = y;
-        this.speed = -speed;
+        this.speed = speed;
 
-        this.bitmap = new GameBitmap(R.mipmap.laser_1);
+        this.bitmap = new AnimationGameBitmap(R.mipmap.enemy_01, FRAMES_PER_SECOND, 0);
     }
     @Override
     public void update() {
