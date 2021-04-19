@@ -17,6 +17,8 @@ public class AnimationGameBitmap extends GameBitmap {
     private int frameCount;
     private int frameIndex;
 
+    protected Rect srcRect = new Rect();
+
     public AnimationGameBitmap(int resId, float framesPerSecond, int frameCount) {
         super(resId);
         imageWidth = bitmap.getWidth();
@@ -42,10 +44,10 @@ public class AnimationGameBitmap extends GameBitmap {
         int h = imageHeight;
         float hw = fw / 2 * GameView.MULTIPLIER;
         float hh = h / 2 * GameView.MULTIPLIER;
-        Rect src = new Rect(fw * frameIndex, 0, fw * frameIndex + fw, h);
-        RectF dst = new RectF(x - hw, y - hh, x + hw, y + hh);
+        srcRect.set(fw * frameIndex, 0, fw * frameIndex + fw, h);
+        dstRect.set(x - hw, y - hh, x + hw, y + hh);
 
-        canvas.drawBitmap(bitmap, src, dst, null);
+        canvas.drawBitmap(bitmap, srcRect, dstRect, null);
 
     }
 
