@@ -5,8 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
+import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
+
 public class AnimationGameBitmap extends GameBitmap {
-    public static final int PIXEL_MULTIPLIER = 4;
     private Bitmap bitmap;
     private final int imageWidth;
     private final int imageHeight;
@@ -31,19 +32,16 @@ public class AnimationGameBitmap extends GameBitmap {
         frameIndex = 0;
     }
 
-    //    public void update() {
-//        int elapesd = (int)(System.currentTimeMillis() - createOn);
-//        frameIndex = Math.round(elapesd * framesPerSecond * 0.001f) % frameCount;
-//    }
+
 
     public void draw(Canvas canvas, float x, float y) {
-        int elapesd = (int)(System.currentTimeMillis() - createOn);
-        frameIndex = Math.round(elapesd * framesPerSecond * 0.001f) % frameCount;
+        int elapsed = (int)(System.currentTimeMillis() - createOn);
+        frameIndex = Math.round(elapsed * framesPerSecond * 0.001f) % frameCount;
 
         int fw = frameWidth;
         int h = imageHeight;
-        int hw = fw / 2 * 4;
-        int hh = h / 2 * 4;
+        float hw = fw / 2 * GameView.MULTIPLIER;
+        float hh = h / 2 * GameView.MULTIPLIER;
         Rect src = new Rect(fw * frameIndex, 0, fw * frameIndex + fw, h);
         RectF dst = new RectF(x - hw, y - hh, x + hw, y + hh);
 
@@ -52,10 +50,10 @@ public class AnimationGameBitmap extends GameBitmap {
     }
 
     public int getWidth() {
-        return frameWidth * PIXEL_MULTIPLIER;
+        return frameWidth;
     }
 
     public int getHeight() {
-        return imageHeight * PIXEL_MULTIPLIER;
+        return imageHeight;
     }
 }
