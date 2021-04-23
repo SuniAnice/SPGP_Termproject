@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.dragonflight.framework.Recycleable;
 import kr.ac.kpu.game.s2016182019.dragonflight.ui.view.GameView;
 import kr.ac.kpu.game.s2016182019.dragonflight.utils.CollisionHelper;
 
@@ -17,6 +19,9 @@ public class MainGame {
     // singleton
     static MainGame instance;
     private Player player;
+    public float frameTime;
+
+    private  boolean initialized;
 
     public static MainGame get() {
         if (instance == null) {
@@ -25,10 +30,26 @@ public class MainGame {
         return instance;
     }
 
-    ArrayList<GameObject> objects = new ArrayList<>();
-    public float frameTime;
+    private static ArrayList<GameObject> objects = new ArrayList<>();
+    private static HashMap<Class, ArrayList<GameObject>> recycleBin = new HashMap<>();
 
-    private  boolean initialized;
+    public void recycle(GameObject object) {
+        Class clazz = object.getClass();
+        ArrayList<GameObject> array = recycleBin.get(clazz);
+        if (array == null) {
+            array = new ArrayList<>();
+            recycleBin.put(clazz, array);
+        }
+        array.add(object);
+    }
+
+    public GameObject get(Class clazz) {
+        ArrayList<GameObject> array = recycleBin.get(clazz);
+        if (array == null || array.isEmpty()) return null;
+        return array.remove(0);
+    }
+
+
 
     public boolean initResources() {
         if (initialized) {
@@ -70,7 +91,7 @@ public class MainGame {
                     //Log.d(TAG, "Collision! " + o1 + "-" + o2);
                     remove(enemy);
                     remove(bullet);
-                    bullet.recycle();
+                    recycle(bullet);
                     removed = true;
                     break;
                 }
@@ -112,13 +133,16 @@ public class MainGame {
     }
 
     public void remove(GameObject gameObject) {
+        if (gameObject instanceof Recycleable) {
+            ((Recycleable) gameObject).recycle();
+            recycle(gameObject);
+        }
         GameView.view.post(new Runnable() {
             @Override
             public void run() {
                 objects.remove(gameObject);
             }
         });
-
-
     }
+
 }

@@ -9,8 +9,9 @@ import kr.ac.kpu.game.s2016182019.dragonflight.R;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.dragonflight.framework.Recycleable;
 
-public class Bullet implements GameObject, BoxCollidable {
+public class Bullet implements GameObject, BoxCollidable, Recycleable {
     private float x;
     private final GameBitmap bitmap;
     private float y;
@@ -27,10 +28,11 @@ public class Bullet implements GameObject, BoxCollidable {
     private static ArrayList<Bullet> recycleBin = new ArrayList<>();
 
     public static Bullet get(float x, float y, int speed) {
-        if (recycleBin.isEmpty()) {
+        MainGame game = MainGame.get();
+        Bullet bullet = (Bullet) game.get(Bullet.class);
+        if (bullet == null) {
             return new Bullet(x, y, speed);
         }
-        Bullet bullet = recycleBin.remove(0);
         bullet.init(x, y, speed);
         return bullet;
     }
@@ -62,7 +64,9 @@ public class Bullet implements GameObject, BoxCollidable {
         bitmap.getBoundingRect(x, y, rect);
     }
 
+    @Override
     public void recycle() {
-        recycleBin.add(this);
+
     }
+
 }
