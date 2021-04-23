@@ -3,24 +3,44 @@ package kr.ac.kpu.game.s2016182019.dragonflight.game;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
+import java.util.ArrayList;
+
 import kr.ac.kpu.game.s2016182019.dragonflight.R;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
 
 public class Bullet implements GameObject, BoxCollidable {
-    private final float x;
+    private float x;
     private final GameBitmap bitmap;
     private float y;
-    private final int speed;
+    private int speed;
 
-    public Bullet(float x, float y, int speed) {
+    private Bullet(float x, float y, int speed) {
         this.x =x;
         this.y = y;
         this.speed = -speed;
 
         this.bitmap = new GameBitmap(R.mipmap.laser_1);
     }
+
+    private static ArrayList<Bullet> recycleBin = new ArrayList<>();
+
+    public static Bullet get(float x, float y, int speed) {
+        if (recycleBin.isEmpty()) {
+            return new Bullet(x, y, speed);
+        }
+        Bullet bullet = recycleBin.remove(0);
+        bullet.init(x, y, speed);
+        return bullet;
+    }
+
+    private void init(float x, float y, int speed) {
+        this.x = x;
+        this.y = y;
+        this.speed = -speed;
+    }
+
     @Override
     public void update() {
         MainGame game = MainGame.get();
@@ -28,6 +48,7 @@ public class Bullet implements GameObject, BoxCollidable {
 
         if (y < 0) {
             game.remove(this);
+            recycle();
         }
     }
 
@@ -39,5 +60,9 @@ public class Bullet implements GameObject, BoxCollidable {
     @Override
     public void getBoundingRect(RectF rect) {
         bitmap.getBoundingRect(x, y, rect);
+    }
+
+    public void recycle() {
+        recycleBin.add(this);
     }
 }
