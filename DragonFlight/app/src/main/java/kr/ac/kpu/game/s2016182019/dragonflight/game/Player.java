@@ -11,13 +11,15 @@ import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
 public class Player implements GameObject, BoxCollidable {
     private static final int BULLET_SPEED = 1500;
     private static final float FIRE_INTERVAL = 1.0f / 7.5f;
+    private static final float LASER_DURATION = FIRE_INTERVAL / 3;
     private float fireTime;
     private int imageWidth;
     private int imageHeight;
     private float x, y;
     private float tx, ty;
     private float speed;
-    private GameBitmap bitmap;
+    private GameBitmap planeBitmap;
+    private GameBitmap fireBitmap;
 
     public Player(float x, float y) {
         this.x = x;
@@ -25,7 +27,8 @@ public class Player implements GameObject, BoxCollidable {
         this.tx = x;
         this.ty = y;
         this.speed = 800;
-        this.bitmap = new GameBitmap(R.mipmap.fighter);
+        this.planeBitmap = new GameBitmap(R.mipmap.fighter);
+        this.fireBitmap = new GameBitmap(R.mipmap.laser_0);
         this.fireTime = 0.0f;
     }
 
@@ -57,11 +60,14 @@ public class Player implements GameObject, BoxCollidable {
     }
 
     public void draw(Canvas canvas) {
-        bitmap.draw(canvas, x, y);
+        planeBitmap.draw(canvas, x, y);
+        if (fireTime < LASER_DURATION) {
+            fireBitmap.draw(canvas, x, y - 50);
+        }
     }
 
     @Override
     public void getBoundingRect(RectF rect) {
-        bitmap.getBoundingRect(x, y, rect);
+        planeBitmap.getBoundingRect(x, y, rect);
     }
 }
