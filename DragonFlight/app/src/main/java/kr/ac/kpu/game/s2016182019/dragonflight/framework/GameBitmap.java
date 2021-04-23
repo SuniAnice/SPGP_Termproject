@@ -53,14 +53,14 @@ public class GameBitmap {
         return bitmap.getWidth();
     }
 
-    public RectF getBoundingRect(float x, float y) {
-        int hw = bitmap.getWidth() / 2;
-        int hh = bitmap.getHeight() / 2;
+    public void getBoundingRect(float x, float y, RectF rect) {
+        int hw = getWidth() / 2;
+        int hh = getHeight() / 2;
 
         float dl = x - hw * GameView.MULTIPLIER;
         float dt = y - hh * GameView.MULTIPLIER;
         float dr = x + hw * GameView.MULTIPLIER;
         float db = y + hh * GameView.MULTIPLIER;
-        return new RectF(dl, dt, dr, db);
+       rect.set(dl, dt, dr, db);
     }
 }

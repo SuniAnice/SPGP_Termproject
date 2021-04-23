@@ -18,7 +18,7 @@ public class Enemy implements GameObject, BoxCollidable {
     private final int speed;
 
     public Enemy(float x, float y, int speed) {
-        this.x =x;
+        this.x = x;
         this.y = y;
         this.speed = speed;
 
@@ -40,7 +40,7 @@ public class Enemy implements GameObject, BoxCollidable {
     }
 
     @Override
-    public RectF getBoundingRect() {
-        return bitmap.getBoundingRect(x,y);
+    public void getBoundingRect(RectF rect) {
+        bitmap.getBoundingRect(x, y, rect);
     }
 }
