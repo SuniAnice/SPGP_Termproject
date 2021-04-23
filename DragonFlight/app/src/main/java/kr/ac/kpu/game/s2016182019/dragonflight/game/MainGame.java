@@ -66,7 +66,7 @@ public class MainGame {
                     continue;
                 }
                 if (CollisionHelper.collides((BoxCollidable) o1, (BoxCollidable)o2)) {
-                    Log.d(TAG, "Collision! " + o1 + "-" + o2);
+                    //Log.d(TAG, "Collision! " + o1 + "-" + o2);
                     remove(o1);
                     remove(o2);
                     removed = true;
@@ -78,7 +78,7 @@ public class MainGame {
                 continue;
             }
             if (CollisionHelper.collides((BoxCollidable)o1, player)) {
-                Log.d(TAG, "Collision : Enemy - player");
+                //Log.d(TAG, "Collision : Enemy - player");
             }
         }
     }
