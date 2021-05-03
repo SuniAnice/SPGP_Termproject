@@ -22,6 +22,7 @@ public class MainGame {
     public float frameTime;
 
     private  boolean initialized;
+    private Score score;
 
     public static MainGame get() {
         if (instance == null) {
@@ -68,13 +69,18 @@ public class MainGame {
         add(Layer.player, player);
         add(Layer.controller, new EnemyGenerator());
 
+        int margin = (int) (20 * GameView.MULTIPLIER);
+        score = new Score(w - margin, margin);
+//        score.setScore(123459);
+        add(Layer.ui, score);
+
         initialized = true;
 
         return true;
     }
 
     public enum Layer {
-        enemy, bullet, player, controller, ENEMY_COUNT
+        enemy, bullet, player, ui, controller, ENEMY_COUNT
     }
 
     private void initLayers(int layerCount) {
@@ -103,6 +109,7 @@ public class MainGame {
                 if (CollisionHelper.collides(enemy, bullet)) {
                     remove(bullet);
                     remove(enemy);
+                    score.addScore(10);
                     collided = true;
                     break;
                 }
@@ -112,34 +119,6 @@ public class MainGame {
             }
         }
 
-
-//        for (GameObject o1 : objects) {
-//            if (!(o1 instanceof Enemy)) {
-//                continue;
-//            }
-//            boolean removed = false;
-//            Enemy enemy = (Enemy) o1;
-//            for (GameObject o2 : objects) {
-//                if (!(o2 instanceof Bullet)) {
-//                    continue;
-//                }
-//                Bullet bullet = (Bullet) o2;
-//                if (CollisionHelper.collides(enemy, bullet)) {
-//                    //Log.d(TAG, "Collision! " + o1 + "-" + o2);
-//                    remove(enemy);
-//                    remove(bullet);
-//                    removed = true;
-//                    break;
-//                }
-//
-//            }
-//            if (removed) {
-//                continue;
-//            }
-//            if (CollisionHelper.collides((BoxCollidable)enemy, player)) {
-//                //Log.d(TAG, "Collision : Enemy - player");
-//            }
-//        }
     }
 
     public void draw(Canvas canvas) {
