@@ -107,8 +107,8 @@ public class MainGame {
             for (GameObject o2 : bullets) {
                 Bullet bullet = (Bullet) o2;
                 if (CollisionHelper.collides(enemy, bullet)) {
-                    remove(bullet);
-                    remove(enemy);
+                    remove(bullet, false);
+                    remove(enemy, false);
                     score.addScore(10);
                     collided = true;
                     break;
@@ -151,21 +151,29 @@ public class MainGame {
     }
 
     public void remove(GameObject gameObject) {
-        if (gameObject instanceof Recycleable) {
-            ((Recycleable) gameObject).recycle();
-            recycle(gameObject);
-        }
-        GameView.view.post(new Runnable() {
+        remove(gameObject, true);
+    }
+    public void remove(GameObject gameObject, boolean delayed) {
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                for (ArrayList<GameObject> objects : layers) {
+                for (ArrayList<GameObject> objects: layers) {
                     boolean removed = objects.remove(gameObject);
                     if (removed) {
+                        if (gameObject instanceof Recycleable) {
+                            ((Recycleable) gameObject).recycle();
+                            recycle(gameObject);
+                        }
+                        //Log.d(TAG, "Removed: " + gameObject);
                         break;
                     }
                 }
             }
-        });
+        };
+        if (delayed) {
+            GameView.view.post(runnable);
+        } else {
+            runnable.run();
+        }
     }
-
 }
