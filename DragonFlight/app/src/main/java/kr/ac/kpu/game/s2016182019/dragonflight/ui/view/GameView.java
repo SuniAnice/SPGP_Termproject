@@ -17,6 +17,7 @@ public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
 
     public static float MULTIPLIER = 2;
+    private boolean running;
 
     private long lastFrame;
     public static GameView view;
@@ -27,6 +28,7 @@ public class GameView extends View {
         super(context, attrs);
         GameView.view = this;
         Sound.init(context);
+        running = true;
         //startUpdating();
     }
 
@@ -40,6 +42,9 @@ public class GameView extends View {
         invalidate();
     }
     private void requestCallback(){
+        if (!running) {
+            return;
+        }
         Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
             @Override
             public void doFrame(long time) {
@@ -81,5 +86,16 @@ public class GameView extends View {
         MainGame game = MainGame.get();
         return game.onTouchEvent(event);
 
+    }
+
+    public void pauseGame() {
+        running = false;
+    }
+
+    public void resumeGame() {
+        if (!running) {
+            running = true;
+            requestCallback();
+        }
     }
 }
