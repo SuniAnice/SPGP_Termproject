@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.ac.kpu.game.s2016182019.dragonflight.R;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.dragonflight.framework.Recycleable;
@@ -74,13 +75,19 @@ public class MainGame {
 //        score.setScore(123459);
         add(Layer.ui, score);
 
+        ImageObject bg = new ImageObject(R.mipmap.bg_city, w / 2, h / 2);
+        add(Layer.bg, bg);
+
+        ImageObject clouds = new ImageObject(R.mipmap.clouds, w / 2, h / 2);
+        add(Layer.bg, clouds);
+
         initialized = true;
 
         return true;
     }
 
     public enum Layer {
-        enemy, bullet, player, ui, controller, ENEMY_COUNT
+        bg, enemy, bullet, player, ui, controller, ENEMY_COUNT
     }
 
     private void initLayers(int layerCount) {
