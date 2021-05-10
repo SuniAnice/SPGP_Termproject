@@ -9,11 +9,11 @@ import kr.ac.kpu.game.s2016182019.cookierun.framework.view.GameView;
 public class AnimationGameBitmap extends GameBitmap {
     private final int imageWidth;
     private final int imageHeight;
-    private final int frameWidth;
-    private final long createOn;
-    private final float framesPerSecond;
-    private int frameCount;
-    private int frameIndex;
+    protected int frameWidth;
+    protected final long createOn;
+    protected final float framesPerSecond;
+    protected int frameCount;
+    protected int frameIndex;
 
     protected Rect srcRect = new Rect();
 

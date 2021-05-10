@@ -7,6 +7,7 @@ import kr.ac.kpu.game.s2016182019.cookierun.R;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.cookierun.framework.IndexedAnimationGameBitmap;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.MainGame;
 
 
@@ -14,14 +15,14 @@ public class Player implements GameObject, BoxCollidable {
     private static final int BULLET_SPEED = 1500;
     private static final float FIRE_INTERVAL = 1.0f / 7.5f;
     private static final float LASER_DURATION = FIRE_INTERVAL / 3;
+    private final IndexedAnimationGameBitmap charBitmap;
     private float fireTime;
     private int imageWidth;
     private int imageHeight;
     private float x, y;
     private float tx, ty;
     private float speed;
-    private GameBitmap planeBitmap;
-    private GameBitmap fireBitmap;
+
 
     public Player(float x, float y) {
         this.x = x;
@@ -29,8 +30,9 @@ public class Player implements GameObject, BoxCollidable {
         this.tx = x;
         this.ty = y;
         this.speed = 800;
-        //this.planeBitmap = new GameBitmap(R.mipmap.fighter);
-        //this.fireBitmap = new GameBitmap(R.mipmap.laser_0);
+        this.charBitmap = new IndexedAnimationGameBitmap(R.mipmap.cookie, 4.5f, 4);
+        charBitmap.setIndices(100, 101, 102, 103);
+
         this.fireTime = 0.0f;
     }
 
@@ -60,14 +62,11 @@ public class Player implements GameObject, BoxCollidable {
     }
 
     public void draw(Canvas canvas) {
-        planeBitmap.draw(canvas, x, y);
-        if (fireTime < LASER_DURATION) {
-            fireBitmap.draw(canvas, x, y - 50);
-        }
+        charBitmap.draw(canvas, x, y);
     }
 
     @Override
     public void getBoundingRect(RectF rect) {
-        planeBitmap.getBoundingRect(x, y, rect);
+        //charBitmap.getBoundingRect(x, y, rect);
     }
 }
