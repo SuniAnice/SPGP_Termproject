@@ -30,7 +30,7 @@ public class Player implements GameObject, BoxCollidable {
         this.tx = x;
         this.ty = y;
         this.speed = 800;
-        this.charBitmap = new IndexedAnimationGameBitmap(R.mipmap.cookie, 4.5f, 4);
+        this.charBitmap = new IndexedAnimationGameBitmap(R.mipmap.cookie, 9f, 0);
         charBitmap.setIndices(100, 101, 102, 103);
 
         this.fireTime = 0.0f;

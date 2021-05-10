@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.ac.kpu.game.s2016182019.cookierun.R;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.utils.CollisionHelper;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.view.GameView;
 import kr.ac.kpu.game.s2016182019.cookierun.game.Player;
@@ -74,11 +75,14 @@ public class MainGame {
 //        score.setScore(123459);
         add(Layer.ui, score);
 
-//        HorizontalScrollBackground bg = new HorizontalScrollBackground(R.mipmap.bg_city, 10);
-//        add(Layer.bg, bg);
-//
-//        HorizontalScrollBackground clouds = new HorizontalScrollBackground(R.mipmap.clouds, 20);
-//        add(Layer.bg2, clouds);
+        HorizontalScrollBackground bg1 = new HorizontalScrollBackground(R.mipmap.cookie_run_bg_1, 20);
+        add(Layer.bg, bg1);
+
+        HorizontalScrollBackground bg2 = new HorizontalScrollBackground(R.mipmap.cookie_run_bg_2, 40);
+        add(Layer.bg, bg2);
+
+        HorizontalScrollBackground bg3 = new HorizontalScrollBackground(R.mipmap.cookie_run_bg_3, 80);
+        add(Layer.bg, bg3);
 
         initialized = true;
 

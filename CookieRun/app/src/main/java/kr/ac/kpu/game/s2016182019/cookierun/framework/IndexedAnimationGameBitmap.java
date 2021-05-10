@@ -29,6 +29,7 @@ public class IndexedAnimationGameBitmap extends AnimationGameBitmap {
             int b = t + 270;
             srcRects.add(new Rect(l, t, r, b));
         }
+        frameCount = indices.length;
     }
 
     @Override

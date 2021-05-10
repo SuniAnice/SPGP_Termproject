@@ -44,22 +44,17 @@ public class HorizontalScrollBackground implements GameObject {
         int vh = GameView.view.getHeight();
         int iw = bitmap.getWidth();
         int ih = bitmap.getHeight();
-        int dh = vw * ih / iw;
+        int dw = vh * iw / ih;
 
-        int currw = (int) scroll % vw;
-        if (currw > 0) currw -= vw;
+        int currw = (int) scroll % dw;
+        if (currw > 0) currw -= dw;
 
-        int currh = 0;
-
-        while (currh < vh) {
-            int tempw = currw;
-            while (tempw < vw) {
-                dstRect.set(tempw, currh, vw + tempw, currh + dh);
-                canvas.drawBitmap(bitmap, srcRect, dstRect, null);
-                tempw += vw;
-            }
-            currh += dh;
+        while (currw < vw) {
+            dstRect.set(currw, 0, dw + currw, vh);
+            canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+            currw += dw;
         }
+
 
     }
 }
