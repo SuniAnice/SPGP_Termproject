@@ -5,6 +5,7 @@ import kr.ac.kpu.game.s2016182019.cookierun.framework.ImageObject;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.view.GameView;
 
 public class Platform extends ImageObject {
+    public static int SPEED = 150;
     enum Type{
         T_10x2, T_2x2, T_3x1
     }
@@ -17,4 +18,10 @@ public class Platform extends ImageObject {
         dstRect.set(x, y, x + w, x + h);
     }
 
+    @Override
+    public void update() {
+        MainGame game = MainGame.get();
+        float dx = SPEED * game.frameTime;
+        dstRect.offset(-dx, 0);
+    }
 }

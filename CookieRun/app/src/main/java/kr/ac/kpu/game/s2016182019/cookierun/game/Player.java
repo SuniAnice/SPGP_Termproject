@@ -24,9 +24,9 @@ public class Player implements GameObject, BoxCollidable {
     private float tx, ty;
     private float speed;
     private float vertSpeed;
-    private int[] ANIM_INDICES_RUNNING = { 100, 101, 102, 103 }
-    private int[] ANIM_INDICES_JUMP = { 7, 8 }
-    private int[] ANIM_INDICES_DOUBLE_JUMP = { 1, 2, 3, 4 }
+    private int[] ANIM_INDICES_RUNNING = { 100, 101, 102, 103 };
+    private int[] ANIM_INDICES_JUMP = { 7, 8 };
+    private int[] ANIM_INDICES_DOUBLE_JUMP = { 1, 2, 3, 4 };
 
 
     private enum State {
