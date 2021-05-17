@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016182019.cookierun.framework;
+package kr.ac.kpu.game.s2016182019.cookierun.game;
 
 import android.graphics.Canvas;
 import android.util.Log;
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import kr.ac.kpu.game.s2016182019.cookierun.R;
-import kr.ac.kpu.game.s2016182019.cookierun.framework.utils.CollisionHelper;
+import kr.ac.kpu.game.s2016182019.cookierun.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.cookierun.framework.HorizontalScrollBackground;
+import kr.ac.kpu.game.s2016182019.cookierun.framework.Recycleable;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.view.GameView;
-import kr.ac.kpu.game.s2016182019.cookierun.game.Player;
-import kr.ac.kpu.game.s2016182019.cookierun.game.Score;
 
 
 public class MainGame {
@@ -65,7 +65,7 @@ public class MainGame {
 
         //Random rand = new Random();
 
-        player = new Player(w/2, h-300);
+        player = new Player(200, h-300);
         //layers.get(Layer.player.ordinal()).add(player);
         add(Layer.player, player);
         //add(Layer.controller, new EnemyGenerator());
@@ -84,13 +84,20 @@ public class MainGame {
         HorizontalScrollBackground bg3 = new HorizontalScrollBackground(R.mipmap.cookie_run_bg_3, 80);
         add(Layer.bg, bg3);
 
+//        float tx = 100, ty = h - 500;
+//        while( tx < w ) {
+//               Platform platform = new Platform(Platform.Type.T_10x2 , tx, ty);
+//               add(Layer.platform, platform);
+//               tx += platform.getDstWidth();
+//        }
+
         initialized = true;
 
         return true;
     }
 
     public enum Layer {
-        bg, enemy, bullet, player, bg2, ui, controller, ENEMY_COUNT
+        bg, platform, bullet, player, ui, controller, ENEMY_COUNT
     }
 
     private void initLayers(int layerCount) {
@@ -123,7 +130,7 @@ public class MainGame {
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE) {
-            player.moveTo(event.getX(), event.getY());
+            player.jump();
             return true;
         }
         return false;

@@ -5,9 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import kr.ac.kpu.game.s2016182019.cookierun.framework.GameBitmap;
-import kr.ac.kpu.game.s2016182019.cookierun.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016182019.cookierun.game.MainGame;
 
 public class HorizontalScrollBackground implements GameObject {
     private final Bitmap bitmap;

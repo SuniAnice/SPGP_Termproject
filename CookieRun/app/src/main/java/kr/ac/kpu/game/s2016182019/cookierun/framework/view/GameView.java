@@ -10,7 +10,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import kr.ac.kpu.game.s2016182019.cookierun.framework.MainGame;
+import kr.ac.kpu.game.s2016182019.cookierun.game.MainGame;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.Sound;
 
 public class GameView extends View {
