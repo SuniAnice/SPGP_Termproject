@@ -1,5 +1,7 @@
 package kr.ac.kpu.game.s2016182019.cookierun.game;
 
+import java.util.Random;
+
 import kr.ac.kpu.game.s2016182019.cookierun.R;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.ImageObject;
 import kr.ac.kpu.game.s2016182019.cookierun.framework.view.GameView;
@@ -11,12 +13,24 @@ public class Platform extends ImageObject {
         return dstRect.right;
     }
 
-    enum Type{
-        T_10x2, T_2x2, T_3x1
+    public enum Type{
+        T_10x2, T_2x2, T_3x1, RANDOM;
+        int resId() {
+            switch (this) {
+                case T_10x2: return R.mipmap.cookierun_platform_480x48;
+                case T_2x2: return R.mipmap.cookierun_platform_124x120;
+                case T_3x1: return R.mipmap.cookierun_platform_120x40;
+                default: return 0;
+            }
+        }
     }
     public Platform(Type type, float x, float y){
 //        int resId= type ==;
-        super(R.mipmap.cookierun_platform_480x48, x, y);
+        if (type == Type.RANDOM) {
+            Random r = new Random();
+            type = r.nextInt(2) == 0 ? Type.T_10x2 : Type.T_2x2;
+        }
+        init(type.resId(), x, y);
         final float UNIT = 40 * GameView.MULTIPLIER;
         float w = UNIT * 10;
         float h = UNIT * 2;

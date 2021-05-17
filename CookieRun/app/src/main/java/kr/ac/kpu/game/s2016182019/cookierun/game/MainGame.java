@@ -98,8 +98,12 @@ public class MainGame {
         return true;
     }
 
-    public ArrayList<GameObject> objects(int layerIndex) {
+    public ArrayList<GameObject> objectsAt(int layerIndex) {
         return layers.get(layerIndex);
+    }
+
+    public ArrayList<GameObject> objectsAt(Layer layer) {
+        return objectsAt(layer.ordinal());
     }
 
     public enum Layer {
