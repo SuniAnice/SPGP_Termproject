@@ -6,6 +6,11 @@ import kr.ac.kpu.game.s2016182019.cookierun.framework.view.GameView;
 
 public class Platform extends ImageObject {
     public static int SPEED = 150;
+
+    public float getRight() {
+        return dstRect.right;
+    }
+
     enum Type{
         T_10x2, T_2x2, T_3x1
     }

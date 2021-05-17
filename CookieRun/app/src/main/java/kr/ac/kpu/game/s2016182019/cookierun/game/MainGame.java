@@ -84,6 +84,8 @@ public class MainGame {
         HorizontalScrollBackground bg3 = new HorizontalScrollBackground(R.mipmap.cookie_run_bg_3, 80);
         add(Layer.bg, bg3);
 
+        add(Layer.controller, new StageMap());
+
 //        float tx = 100, ty = h - 500;
 //        while( tx < w ) {
 //               Platform platform = new Platform(Platform.Type.T_10x2 , tx, ty);
@@ -94,6 +96,10 @@ public class MainGame {
         initialized = true;
 
         return true;
+    }
+
+    public ArrayList<GameObject> objects(int layerIndex) {
+        return layers.get(layerIndex);
     }
 
     public enum Layer {
