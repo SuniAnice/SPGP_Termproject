@@ -25,17 +25,17 @@
 
 커밋 상황
 
-![image-20210521025703297](C:\Users\Hong\AppData\Roaming\Typora\typora-user-images\image-20210521025703297.png)
+![image-20210521025703297](./resource/image-20210521025703297.png)
 
 | 주차  | 커밋 수 |
 | :---: | :-----: |
-| 1주차 |   12    |
-| 2주차 |    8    |
-| 3주차 |   15    |
+| 1주차 |    2    |
+| 2주차 |    0    |
+| 3주차 |    0    |
 | 4주차 |    0    |
-| 5주차 |   10    |
-| 6주차 |    4    |
-| 7주차 |    9    |
+| 5주차 |    0    |
+| 6주차 |    0    |
+| 7주차 |    7    |
 
 
 
@@ -51,7 +51,7 @@
 
 MainGame에 등장하는 클래스에 대한 간단한 설명
 
-![image-20210521030905283](C:\Users\Hong\AppData\Roaming\Typora\typora-user-images\image-20210521030905283.png)
+![image-20210521030905283](./resource/image-20210521030905283.png)
 
 Board - 8x8의 Block 클래스의 객체를 2차원 배열로 가짐
 
