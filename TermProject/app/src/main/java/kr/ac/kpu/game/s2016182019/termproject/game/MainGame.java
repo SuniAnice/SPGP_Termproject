@@ -108,7 +108,7 @@ public class MainGame {
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
-
+            board.onTouchEvent(event);
             return true;
         }
         return false;
