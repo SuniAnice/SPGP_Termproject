@@ -62,7 +62,7 @@ public class Board implements GameObject {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                blocks[i][j] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (j + 0.5) + offsetY), r.nextInt(4));
+                blocks[i][j] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (j + 0.5) + offsetY), r.nextInt(6));
             }
         }
     }
@@ -70,76 +70,114 @@ public class Board implements GameObject {
     public void update() {
         MainGame game = MainGame.get();
         movingBlocks = 0;
+        Random r = new Random();
 
         if (canMove) {
             // 연속된 블럭 체크
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    int tIndex = blocks[i][j].index;
-                    // 가로
+                    if (blocks[i][j] != null)
                     {
-                        int count = 1;
-                        while (blocks[i + count][j].index == tIndex && i + count < 8) {
-                            count++;
+                        int tIndex = blocks[i][j].index;
+                        // 가로
+                        {
+                            int count = 1;
+                            while (i + count < 8) {
+                                if (blocks[i + count][j].index == tIndex) {
+                                    count++;
+                                } else {
+                                    break;
+                                }
+                            }
+                            if (count >= 3) {
+                                for (int k = 0; k < count; k++) {
+                                    blocks[i + k][j].boom = true;
+                                }
+                            }
                         }
-                        if (count >= 3) {
-                            for (int k = 0; k < count; k++) {
-                                blocks[i + k][j].boom = true;
+                        // 세로
+                        {
+                            int count = 1;
+                            while (j + count < 8) {
+                                if (blocks[i][j + count].index == tIndex){
+                                    count++;
+                                } else {
+                                    break;
+                                }
+                            }
+                            if (count >= 3) {
+                                for (int k = 0; k < count; k++) {
+                                    blocks[i][j + k].boom = true;
+                                }
+                            }
+                        }
+                        // 대각선1
+                        {
+                            int count = 1;
+                            while (i + count < 8 && j + count < 8) {
+                                if (blocks[i + count][j + count].index == tIndex){
+                                    count++;
+                                } else {
+                                    break;
+                                }
+                            }
+                            if (count >= 3) {
+                                for (int k = 0; k < count; k++) {
+                                    blocks[i + k][j + k].boom = true;
+                                }
+                            }
+                        }
+                        // 대각선2
+                        {
+                            int count = 1;
+                            while (i - count > 0 && j + count < 8) {
+                                if (blocks[i - count][j + count].index == tIndex){
+                                    count++;
+                                } else {
+                                    break;
+                                }
+                            }
+                            if (count >= 3) {
+                                for (int k = 0; k < count; k++) {
+                                    blocks[i - k][j + k].boom = true;
+                                }
                             }
                         }
                     }
-                    // 세로
-                    {
-                        int count = 1;
-                        while (blocks[i][j + count].index == tIndex && j + count < 8) {
-                            count++;
-                        }
-                        if (count >= 3) {
-                            for (int k = 0; k < count; k++) {
-                                blocks[i][j + k].boom = true;
-                            }
-                        }
-                    }
-                    // 대각선1
-                    {
-                        int count = 1;
-                        while (blocks[i + count][j + count].index == tIndex && i + count < 8 && j + count < 8) {
-                            count++;
-                        }
-                        if (count >= 3) {
-                            for (int k = 0; k < count; k++) {
-                                blocks[i + k][j + k].boom = true;
-                            }
-                        }
-                    }
-                    // 대각선2
-                    {
-                        int count = 1;
-                        while (blocks[i - count][j + count].index == tIndex && i - count > 0 && j + count < 8) {
-                            count++;
-                        }
-                        if (count >= 3) {
-                            for (int k = 0; k < count; k++) {
-                                blocks[i - k][j + k].boom = true;
-                            }
-                        }
-                    }
+
                 }
             }
         }
 
-        for (Block[] temp : blocks) {
-            for (Block block : temp) {
-                if (block.boom) {
-                    block = null;
-                    movingBlocks++;
-                    continue;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (blocks[i][j] != null) {
+                    if (blocks[i][j].boom) {
+                        blocks[i][j] = null;
+                        movingBlocks++;
+                        continue;
+                    }
+                    if (j < 7) {
+                        if (blocks[i][j + 1] == null) {
+                            blocks[i][j].moveto((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (j + 1.5) + offsetY));
+                            blocks[i][j + 1] = blocks[i][j];
+                            blocks[i][j] = null;
+                            movingBlocks++;
+                            continue;
+                        }
+                    }
+                    if (blocks[i][j].isMoving) {
+                        movingBlocks++;
+                    }
+                    blocks[i][j].update();
+
                 }
-                if (block.isMoving)
-                {
-                    movingBlocks++;
-                }
-                block.update();
+            }
+        }
+
+        for (int i = 0; i< 8;i++){
+            if (blocks[i][0] == null){
+                blocks[i][0] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (0.5) + offsetY), r.nextInt(6));
             }
         }
 
@@ -156,7 +194,8 @@ public class Board implements GameObject {
         bitmap.draw(canvas, x, y);
         for (Block[] temp : blocks) {
             for (Block block : temp) {
-                block.draw(canvas);
+                if (block != null)
+                    block.draw(canvas);
             }
         }
     }

@@ -18,7 +18,7 @@ public class Block implements GameObject, BoxCollidable {
     private GameBitmap bitmap;
     private boolean selected;
     public int bitmaps[] = {
-            R.mipmap.red, R.mipmap.green, R.mipmap.blue, R.mipmap.black,
+            R.mipmap.red, R.mipmap.green, R.mipmap.blue, R.mipmap.black, R.mipmap.sword, R.mipmap.shield
     };
     private GameBitmap highlight;
     private int tx;
@@ -42,10 +42,9 @@ public class Block implements GameObject, BoxCollidable {
 
     @Override
     public void update() {
-
         MainGame game = MainGame.get();
-        float dx = SPEED * game.frameTime;
-        float dy = SPEED * game.frameTime;
+        float dx = (Math.abs(tx - x) + SPEED) * game.frameTime;
+        float dy = (Math.abs(ty - y) + SPEED) * game.frameTime;
         // 위치 스왑
         if (tx == x && ty == y) {
             isMoving = false;
