@@ -9,15 +9,22 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 
 public class Block implements GameObject, BoxCollidable {
-    private int x;
-    private int y;
-    private int index;
+
+    private static final float SPEED = 500;
+    public int x;
+    public int y;
+    public int index;
+    public boolean boom = false;
     private GameBitmap bitmap;
     private boolean selected;
     public int bitmaps[] = {
             R.mipmap.red, R.mipmap.green, R.mipmap.blue, R.mipmap.black,
     };
     private GameBitmap highlight;
+    private int tx;
+    private int ty;
+    public boolean isMoving = false;
+
 
     public Block(int x, int y, int index) {
         initialize(x, y, index);
@@ -29,10 +36,41 @@ public class Block implements GameObject, BoxCollidable {
         this.index = index;
         this.bitmap = new GameBitmap(bitmaps[index]);
         this.highlight = new GameBitmap(R.mipmap.highlight);
+        this.tx = x;
+        this.ty = y;
     }
 
     @Override
     public void update() {
+
+        MainGame game = MainGame.get();
+        float dx = SPEED * game.frameTime;
+        float dy = SPEED * game.frameTime;
+        // 위치 스왑
+        if (tx == x && ty == y) {
+            isMoving = false;
+        }
+        if (tx != x)
+        {
+            if (tx <= x) {
+                dx = -dx;
+            }
+            x += dx;
+            if ((dx > 0 && x > tx) || (dx < 0 && x < tx)) {
+                x = tx;
+            }
+        }
+        if (ty != y)
+        {
+            if (ty <= y) {
+                dy = -dy;
+            }
+            y += dy;
+            if ((dy > 0 && y > ty) || (dy < 0 && y < ty)) {
+                y = ty;
+            }
+        }
+
 
     }
 
@@ -52,5 +90,11 @@ public class Block implements GameObject, BoxCollidable {
 
     public void select(boolean b) {
         selected = b;
+    }
+
+    public void moveto(int tx, int ty) {
+        this.isMoving = true;
+        this.tx = tx;
+        this.ty = ty;
     }
 }

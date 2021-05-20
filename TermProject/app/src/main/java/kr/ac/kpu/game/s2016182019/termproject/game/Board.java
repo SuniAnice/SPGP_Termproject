@@ -12,7 +12,10 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
 import kr.ac.kpu.game.s2016182019.termproject.utils.CollisionHelper;
 
+import static kr.ac.kpu.game.s2016182019.termproject.utils.SwapHelper.swap;
+
 public class Board implements GameObject {
+    static kr.ac.kpu.game.s2016182019.termproject.game.Board instance;
     private final int x;
     private final int y;
     private final GameBitmap bitmap;
@@ -22,7 +25,21 @@ public class Board implements GameObject {
     private final float offsetY;
     private Block selected = null;
 
+    public boolean myTurn = true;
+    public boolean canMove = true;
+    private float delay = 0;
+    private int movingBlocks = 0;
+
     private Block blocks[][];
+    private int selectX;
+    private int selectY;
+
+    public static kr.ac.kpu.game.s2016182019.termproject.game.Board get() {
+        if (instance == null) {
+            instance = new kr.ac.kpu.game.s2016182019.termproject.game.Board();
+        }
+        return instance;
+    }
 
     public Board() {
         MainGame game = MainGame.get();
@@ -51,10 +68,86 @@ public class Board implements GameObject {
     }
     @Override
     public void update() {
+        MainGame game = MainGame.get();
+        movingBlocks = 0;
+
+        if (canMove) {
+            // 연속된 블럭 체크
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    int tIndex = blocks[i][j].index;
+                    // 가로
+                    {
+                        int count = 1;
+                        while (blocks[i + count][j].index == tIndex && i + count < 8) {
+                            count++;
+                        }
+                        if (count >= 3) {
+                            for (int k = 0; k < count; k++) {
+                                blocks[i + k][j].boom = true;
+                            }
+                        }
+                    }
+                    // 세로
+                    {
+                        int count = 1;
+                        while (blocks[i][j + count].index == tIndex && j + count < 8) {
+                            count++;
+                        }
+                        if (count >= 3) {
+                            for (int k = 0; k < count; k++) {
+                                blocks[i][j + k].boom = true;
+                            }
+                        }
+                    }
+                    // 대각선1
+                    {
+                        int count = 1;
+                        while (blocks[i + count][j + count].index == tIndex && i + count < 8 && j + count < 8) {
+                            count++;
+                        }
+                        if (count >= 3) {
+                            for (int k = 0; k < count; k++) {
+                                blocks[i + k][j + k].boom = true;
+                            }
+                        }
+                    }
+                    // 대각선2
+                    {
+                        int count = 1;
+                        while (blocks[i - count][j + count].index == tIndex && i - count > 0 && j + count < 8) {
+                            count++;
+                        }
+                        if (count >= 3) {
+                            for (int k = 0; k < count; k++) {
+                                blocks[i - k][j + k].boom = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         for (Block[] temp : blocks) {
             for (Block block : temp) {
+                if (block.boom) {
+                    block = null;
+                    movingBlocks++;
+                    continue;
+                }
+                if (block.isMoving)
+                {
+                    movingBlocks++;
+                }
                 block.update();
             }
+        }
+
+        // 움직이고 있는 블럭 체크
+        if (movingBlocks != 0) {
+            canMove = false;
+        } else {
+            canMove = true;
         }
     }
 
@@ -72,27 +165,47 @@ public class Board implements GameObject {
         float x = event.getX();
         float y = event.getY();
 
-        for (Block[] temp : blocks) {
-            for (Block block : temp) {
-                if (CollisionHelper.collides(block, x, y))
-                {
-                    if (selected != null)
+        if (canMove && myTurn){
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (CollisionHelper.collides(blocks[i][j], x, y))
                     {
-                        selected.select(false);
-                        selected = block;
-                        block.select(true);
-                    }
-                    else
-                    {
-                        selected = block;
-                        block.select(true);
-                    }
+                        if (selected != null)
+                        {
+                            if (selected != blocks[i][j] && Math.abs(i - selectX) <= 1 && Math.abs(j - selectY) <= 1) {
+                                selected.select(false);
+                                swap(selected, blocks[i][j]);
+                                Block temp = selected;
+                                blocks[selectX][selectY] = blocks[i][j];
+                                blocks[i][j] = temp;
+                                selected = null;
+                                canMove = false;
+                            }
+                            else
+                            {
+                                selected.select(false);
+                                selected = blocks[i][j];
+                                blocks[i][j].select(true);
+                                selectX = i;
+                                selectY = j;
+                            }
+                        }
+                        else
+                        {
+                            selected = blocks[i][j];
+                            blocks[i][j].select(true);
+                            selectX = i;
+                            selectY = j;
+                        }
 
-                    return true;
+                        return true;
+                    }
                 }
             }
         }
 
+
         return false;
     }
+
 }
