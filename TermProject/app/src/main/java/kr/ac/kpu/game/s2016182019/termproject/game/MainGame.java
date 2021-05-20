@@ -19,6 +19,7 @@ public class MainGame {
 
     private  boolean initialized;
     private Board board;
+    public Player player;
 
     public static kr.ac.kpu.game.s2016182019.termproject.game.MainGame get() {
         if (instance == null) {
@@ -61,6 +62,9 @@ public class MainGame {
         board = new Board();
         add(Layer.board, board);
 
+        player = new Player();
+        add(Layer.player, player);
+
         initialized = true;
 
         return true;
@@ -75,7 +79,7 @@ public class MainGame {
     }
 
     public enum Layer {
-        bg, board , player, ui, controller, ENEMY_COUNT
+        bg,  player, board ,ui, controller, ENEMY_COUNT
     }
 
     private void initLayers(int layerCount) {

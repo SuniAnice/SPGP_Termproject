@@ -62,7 +62,7 @@ public class Board implements GameObject {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                blocks[i][j] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (j + 0.5) + offsetY), r.nextInt(6));
+                blocks[i][j] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (j + 0.5) + offsetY), r.nextInt(7));
             }
         }
     }
@@ -78,12 +78,12 @@ public class Board implements GameObject {
                 for (int j = 0; j < 8; j++) {
                     if (blocks[i][j] != null)
                     {
-                        int tIndex = blocks[i][j].index;
+                        Block.blockType tIndex = blocks[i][j].type;
                         // 가로
                         {
                             int count = 1;
                             while (i + count < 8) {
-                                if (blocks[i + count][j].index == tIndex) {
+                                if (blocks[i + count][j].type == tIndex) {
                                     count++;
                                 } else {
                                     break;
@@ -99,7 +99,7 @@ public class Board implements GameObject {
                         {
                             int count = 1;
                             while (j + count < 8) {
-                                if (blocks[i][j + count].index == tIndex){
+                                if (blocks[i][j + count].type == tIndex){
                                     count++;
                                 } else {
                                     break;
@@ -115,7 +115,7 @@ public class Board implements GameObject {
                         {
                             int count = 1;
                             while (i + count < 8 && j + count < 8) {
-                                if (blocks[i + count][j + count].index == tIndex){
+                                if (blocks[i + count][j + count].type == tIndex){
                                     count++;
                                 } else {
                                     break;
@@ -131,7 +131,7 @@ public class Board implements GameObject {
                         {
                             int count = 1;
                             while (i - count > 0 && j + count < 8) {
-                                if (blocks[i - count][j + count].index == tIndex){
+                                if (blocks[i - count][j + count].type == tIndex){
                                     count++;
                                 } else {
                                     break;
@@ -153,6 +153,29 @@ public class Board implements GameObject {
             for (int j = 0; j < 8; j++) {
                 if (blocks[i][j] != null) {
                     if (blocks[i][j].boom) {
+                        switch (blocks[i][j].type){
+                            case Red:
+                                game.player.manaRed++;
+                                break;
+                            case Green:
+                                game.player.manaGreen++;
+                                break;
+                            case Blue:
+                                game.player.manaBlue++;
+                                break;
+                            case Black:
+                                game.player.manaBlack++;
+                                break;
+                            case White:
+                                game.player.manaWhite++;
+                                break;
+                            case Sword:
+                                game.player.attack++;
+                                break;
+                            case Shield:
+                                game.player.defence++;
+                                break;
+                        }
                         blocks[i][j] = null;
                         movingBlocks++;
                         continue;
@@ -177,7 +200,8 @@ public class Board implements GameObject {
 
         for (int i = 0; i< 8;i++){
             if (blocks[i][0] == null){
-                blocks[i][0] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (0.5) + offsetY), r.nextInt(6));
+                blocks[i][0] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (-0.5) + offsetY), r.nextInt(7));
+                blocks[i][0].moveto((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (0.5) + offsetY));
             }
         }
 
@@ -211,7 +235,11 @@ public class Board implements GameObject {
                     {
                         if (selected != null)
                         {
-                            if (selected != blocks[i][j] && Math.abs(i - selectX) <= 1 && Math.abs(j - selectY) <= 1) {
+                            if (selected == blocks[i][j]) {
+                                selected.select(false);
+                                selected = null;
+                            }
+                            else if (Math.abs(i - selectX) <= 1 && Math.abs(j - selectY) <= 1) {
                                 selected.select(false);
                                 swap(selected, blocks[i][j]);
                                 Block temp = selected;

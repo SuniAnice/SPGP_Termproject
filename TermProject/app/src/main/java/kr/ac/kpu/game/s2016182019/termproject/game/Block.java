@@ -13,17 +13,21 @@ public class Block implements GameObject, BoxCollidable {
     private static final float SPEED = 500;
     public int x;
     public int y;
-    public int index;
+    public blockType type;
     public boolean boom = false;
     private GameBitmap bitmap;
     private boolean selected;
     public int bitmaps[] = {
-            R.mipmap.red, R.mipmap.green, R.mipmap.blue, R.mipmap.black, R.mipmap.sword, R.mipmap.shield
+            R.mipmap.red, R.mipmap.green, R.mipmap.blue, R.mipmap.black, R.mipmap.white, R.mipmap.sword, R.mipmap.shield
     };
     private GameBitmap highlight;
     private int tx;
     private int ty;
     public boolean isMoving = false;
+
+    enum blockType{
+        Red, Green, Blue, Black, White, Sword, Shield
+    }
 
 
     public Block(int x, int y, int index) {
@@ -33,7 +37,8 @@ public class Block implements GameObject, BoxCollidable {
     public void initialize(int x, int y, int index) {
         this.x = x;
         this.y = y;
-        this.index = index;
+        blockType[] temp = blockType.values();
+        this.type = temp[index];
         this.bitmap = new GameBitmap(bitmaps[index]);
         this.highlight = new GameBitmap(R.mipmap.highlight);
         this.tx = x;
