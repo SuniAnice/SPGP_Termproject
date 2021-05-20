@@ -1,6 +1,7 @@
 package kr.ac.kpu.game.s2016182019.termproject.game;
 
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,18 @@ public class Player implements GameObject {
         attack = 0;
         defence = 0;
     }
+    public boolean useMana(int red, int green, int blue, int black, int white)
+    {
+        if (manaRed >= red && manaGreen >= green && manaBlue >= blue && manaBlack >= black && manaWhite >= white) {
+            manaRed -= red;
+            manaGreen -= green;
+            manaBlue -= blue;
+            manaBlack -= black;
+            manaWhite -= white;
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void update() {
@@ -50,5 +63,9 @@ public class Player implements GameObject {
     @Override
     public void draw(Canvas canvas) {
         playerUI.draw(canvas);
+    }
+
+    public boolean onTouchEvent(MotionEvent event) {
+        return playerUI.onTouchEvent(event);
     }
 }

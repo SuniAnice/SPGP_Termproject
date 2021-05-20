@@ -30,7 +30,7 @@ public class Board implements GameObject {
     private float delay = 0;
     private int movingBlocks = 0;
 
-    private Block blocks[][];
+    public Block blocks[][];
     private int selectX;
     private int selectY;
 

@@ -96,6 +96,11 @@ public class Block implements GameObject, BoxCollidable {
         selected = b;
     }
 
+    public void change(blockType type) {
+        this.bitmap = new GameBitmap(bitmaps[type.ordinal()]);
+        this.type = type;
+    }
+
     public void moveto(int tx, int ty) {
         this.isMoving = true;
         this.tx = tx;

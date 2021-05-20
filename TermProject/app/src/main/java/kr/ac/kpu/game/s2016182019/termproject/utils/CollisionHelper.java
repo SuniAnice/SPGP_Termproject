@@ -34,4 +34,5 @@ public class CollisionHelper {
         //Log.d(TAG, "1:" + rect1 + "2:" + rect2);
         return true;
     }
+
 }

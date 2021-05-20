@@ -18,7 +18,7 @@ public class MainGame {
     public float frameTime;
 
     private  boolean initialized;
-    private Board board;
+    public Board board;
     public Player player;
 
     public static kr.ac.kpu.game.s2016182019.termproject.game.MainGame get() {
@@ -112,7 +112,9 @@ public class MainGame {
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
-            board.onTouchEvent(event);
+            if (!board.onTouchEvent(event)){
+                player.onTouchEvent(event);
+            }
             return true;
         }
         return false;
