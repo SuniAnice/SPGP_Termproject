@@ -65,8 +65,8 @@ public class MainGame {
 
         //Random rand = new Random();
 
-        player = new Player(200, h-300);
-        //layers.get(Layer.player.ordinal()).add(player);
+        float y = h - Platform.Type.T_2x2.height() - 255;
+        player = new Player(200, y);
         add(Layer.player, player);
         //add(Layer.controller, new EnemyGenerator());
 
@@ -84,7 +84,7 @@ public class MainGame {
         HorizontalScrollBackground bg3 = new HorizontalScrollBackground(R.mipmap.cookie_run_bg_3, 80);
         add(Layer.bg, bg3);
 
-        add(Layer.controller, new StageMap());
+        add(Layer.controller, new StageMap("stage_01.txt"));
 
 //        float tx = 100, ty = h - 500;
 //        while( tx < w ) {
@@ -119,7 +119,7 @@ public class MainGame {
 
     public void update() {
         if (!initialized) return;
-        Log.d("TAG", "Update()");
+        //Log.d("TAG", "Update()");
         for (ArrayList<GameObject> objects : layers) {
             for (GameObject o : objects) {
                 o.update();
