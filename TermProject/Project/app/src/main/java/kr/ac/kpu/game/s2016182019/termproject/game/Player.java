@@ -15,6 +15,8 @@ public class Player implements GameObject {
     public int maxHp = 100;
     public int hp = 100;
 
+    public Enemy enemy;
+
     public int manaRed = 0;
     public int manaGreen = 0;
     public int manaBlue = 0;
@@ -25,7 +27,6 @@ public class Player implements GameObject {
 
 
     public Player() {
-        initialize();
         playerUI = new UIManager();
         playerUI.setSkill(1,0);
         playerUI.setSkill(2,1);
@@ -33,7 +34,8 @@ public class Player implements GameObject {
         playerUI.setSkill(4,1);
     }
 
-    private void initialize() {
+
+    public void initialize() {
         manaRed = 0;
         manaGreen = 0;
         manaBlue = 0;

@@ -49,6 +49,21 @@ public class AnimationGameBitmap extends GameBitmap {
 
     }
 
+    public void draw(Canvas canvas, float x, float y, float multi) {
+        int elapsed = (int)(System.currentTimeMillis() - createOn);
+        frameIndex = Math.round(elapsed * framesPerSecond * 0.001f) % frameCount;
+
+        int fw = frameWidth;
+        int h = imageHeight;
+        float hw = fw / 2 * GameView.MULTIPLIER * multi;
+        float hh = h / 2 * GameView.MULTIPLIER * multi;
+        srcRect.set(fw * frameIndex, 0, fw * frameIndex + fw, h);
+        dstRect.set(x - hw, y - hh, x + hw, y + hh);
+
+        canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+
+    }
+
     public int getWidth() {
         return frameWidth;
     }

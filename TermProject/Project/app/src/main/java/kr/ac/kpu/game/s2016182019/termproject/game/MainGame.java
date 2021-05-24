@@ -20,6 +20,7 @@ public class MainGame {
     private  boolean initialized;
     public Board board;
     public Player player;
+    public Enemy enemy;
 
     public static kr.ac.kpu.game.s2016182019.termproject.game.MainGame get() {
         if (instance == null) {
@@ -64,6 +65,13 @@ public class MainGame {
 
         player = new Player();
         add(Layer.player, player);
+
+        enemy = new Enemy();
+        add(Layer.player, enemy);
+
+        player.initialize();
+        player.enemy = enemy;
+
 
         initialized = true;
 

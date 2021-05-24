@@ -61,6 +61,22 @@ public class Text implements GameObject {
             value /= 10;
         } while (value > 0);
     }
+    public void draw(Canvas canvas, float multi) {
+        int value = this.displaynum;
+        int nw = bitmap.getWidth() / 10;
+        int nh = bitmap.getHeight();
+        int dw = (int) (nw * GameView.MULTIPLIER * multi);
+        int dh = (int) (nh * GameView.MULTIPLIER * multi);
+        int tx = x;
+        do {
+            int digit = value % 10;
+            src.set(digit * nw, 0, (digit + 1) * nw, nh);
+            tx -= dw;
+            dst.set(tx, y, tx + dw, y + dh);
+            canvas.drawBitmap(bitmap, src, dst, null);
+            value /= 10;
+        } while (value > 0);
+    }
 
 
 }

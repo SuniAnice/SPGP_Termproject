@@ -27,7 +27,7 @@ public class Board implements GameObject {
 
     public boolean myTurn = true;
     public boolean canMove = true;
-    private float delay = 0;
+    public int turn = 5;
     private int movingBlocks = 0;
 
     public Block blocks[][];
@@ -170,10 +170,12 @@ public class Board implements GameObject {
                                 game.player.manaWhite++;
                                 break;
                             case Sword:
-                                game.player.attack++;
+                                if (game.enemy.hp > 0)
+                                    game.enemy.hp--;
                                 break;
                             case Shield:
-                                game.player.defence++;
+                                if (game.enemy.currAttack > 0)
+                                        game.enemy.currAttack--;
                                 break;
                         }
                         blocks[i][j] = null;
@@ -225,6 +227,7 @@ public class Board implements GameObject {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
+        MainGame game = MainGame.get();
         float x = event.getX();
         float y = event.getY();
 
@@ -247,6 +250,11 @@ public class Board implements GameObject {
                                 blocks[i][j] = temp;
                                 selected = null;
                                 canMove = false;
+                                turn--;
+                                if (turn == 0) {
+                                    turn = game.enemy.turn;
+                                    game.enemy.doAttack();
+                                }
                             }
                             else
                             {
