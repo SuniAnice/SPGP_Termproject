@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import java.util.Random;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
+import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
@@ -178,7 +179,7 @@ public class Board implements GameObject {
                                         game.enemy.currAttack--;
                                 break;
                         }
-                        Effector e = new Effector(blocks[i][j].x, blocks[i][j].y);
+                        Effector e = new Effector(new AnimationGameBitmap(R.mipmap.explosion,8,8),blocks[i][j].x, blocks[i][j].y, 0.9f);
                         game.add(MainGame.Layer.effect, e);
                         blocks[i][j] = null;
                         movingBlocks++;

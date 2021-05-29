@@ -99,8 +99,11 @@ public class Enemy implements GameObject {
     }
 
     public void doAttack() {
+        MainGame game = MainGame.get();
         player.hp -= currAttack;
         currAttack = attack;
+        Effector e = new Effector(new AnimationGameBitmap(R.mipmap.damage, 5, 5),260,150, 0.8f);
+        game.add(MainGame.Layer.effect, e);
     }
 
     @Override

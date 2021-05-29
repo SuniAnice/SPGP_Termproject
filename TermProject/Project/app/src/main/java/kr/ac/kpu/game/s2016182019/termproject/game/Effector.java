@@ -14,10 +14,11 @@ public class Effector implements GameObject {
 
     public float lifeTime = 0.9f;
 
-    public Effector(int x, int y) {
-        bitmap = new AnimationGameBitmap(R.mipmap.explosion,8,8);
+    public Effector(AnimationGameBitmap bitmap, int x, int y, float lifeTime) {
+        this.bitmap = bitmap;
         this.x = x;
         this.y = y;
+        this.lifeTime = lifeTime;
     }
 
 

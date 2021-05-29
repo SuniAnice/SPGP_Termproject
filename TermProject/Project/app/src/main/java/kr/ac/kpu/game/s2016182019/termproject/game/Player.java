@@ -44,7 +44,7 @@ public class Player implements GameObject {
         attack = 0;
         defence = 0;
         hp += Math.floor(maxHp / 10);
-        hp = Math.max(hp,maxHp);
+        hp = Math.min(hp,maxHp);
     }
 
     public boolean useMana(int red, int green, int blue, int black, int white)
