@@ -178,6 +178,8 @@ public class Board implements GameObject {
                                         game.enemy.currAttack--;
                                 break;
                         }
+                        Effector e = new Effector(blocks[i][j].x, blocks[i][j].y);
+                        game.add(MainGame.Layer.effect, e);
                         blocks[i][j] = null;
                         movingBlocks++;
                         continue;

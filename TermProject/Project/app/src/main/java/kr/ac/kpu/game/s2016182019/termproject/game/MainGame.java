@@ -87,7 +87,7 @@ public class MainGame {
     }
 
     public enum Layer {
-        bg,  player, board ,ui, controller, ENEMY_COUNT
+        bg,  player, board ,ui, controller, effect, ENEMY_COUNT
     }
 
     private void initLayers(int layerCount) {

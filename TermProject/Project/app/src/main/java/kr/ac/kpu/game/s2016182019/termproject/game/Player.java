@@ -43,7 +43,10 @@ public class Player implements GameObject {
         manaWhite = 0;
         attack = 0;
         defence = 0;
+        hp += Math.floor(maxHp / 10);
+        hp = Math.max(hp,maxHp);
     }
+
     public boolean useMana(int red, int green, int blue, int black, int white)
     {
         if (manaRed >= red && manaGreen >= green && manaBlue >= blue && manaBlack >= black && manaWhite >= white) {
