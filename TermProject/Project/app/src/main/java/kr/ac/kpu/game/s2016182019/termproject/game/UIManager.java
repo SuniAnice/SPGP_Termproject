@@ -29,8 +29,8 @@ public class UIManager implements GameObject {
         redText = new Text(450, 335);
         greenText = new Text(250, 415);
         blueText = new Text(450, 415);
-        blackText = new Text(250, 500);
-        whiteText = new Text(450, 500);
+        blackText = new Text(450, 500);
+        whiteText = new Text(250, 500);
         skillSlots[0] = new SkillUI(270,640);
         skillSlots[1] = new SkillUI(270,750);
         skillSlots[2] = new SkillUI(270,860);

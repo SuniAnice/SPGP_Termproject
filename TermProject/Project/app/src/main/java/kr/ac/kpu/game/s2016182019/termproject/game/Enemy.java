@@ -23,6 +23,8 @@ public class Enemy implements GameObject {
     public int currAttack;
     public int turn = 5;
 
+    public int wave = 0;
+
     public enum Type {
         T_ORC, T_SLIME, T_GRASSHOPPER;
 
@@ -77,7 +79,7 @@ public class Enemy implements GameObject {
         attackText = new Text(2000, 735);
         turnText = new Text(2000, 895);
         Random r = new Random();
-        initialize(r.nextInt(3), 0);
+        initialize(r.nextInt(3), wave++);
     }
 
     public void initialize(int index, int wave) {
@@ -107,6 +109,13 @@ public class Enemy implements GameObject {
         healthText.setNum(hp);
         attackText.setNum(currAttack);
         turnText.setNum(game.board.turn);
+
+        if (hp == 0)
+        {
+            Random r = new Random();
+            initialize(r.nextInt(3), wave++);
+            game.player.initialize();
+        }
     }
 
     @Override

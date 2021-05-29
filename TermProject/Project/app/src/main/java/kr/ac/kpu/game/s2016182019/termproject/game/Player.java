@@ -30,8 +30,8 @@ public class Player implements GameObject {
         playerUI = new UIManager();
         playerUI.setSkill(1,0);
         playerUI.setSkill(2,1);
-        playerUI.setSkill(3,0);
-        playerUI.setSkill(4,1);
+        playerUI.setSkill(3,2);
+        playerUI.setSkill(4,3);
     }
 
 
