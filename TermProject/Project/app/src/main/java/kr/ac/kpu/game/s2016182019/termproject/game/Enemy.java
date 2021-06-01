@@ -119,6 +119,14 @@ public class Enemy implements GameObject {
             Random r = new Random();
             initialize(r.nextInt(3), wave++);
             MainScene.scene.player.initialize();
+
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (MainScene.scene.board.blocks[i][j] != null) {
+                        MainScene.scene.board.blocks[i][j].change(Block.blockType.values()[r.nextInt(7)]);
+                    }
+                }
+            }
         }
     }
 
