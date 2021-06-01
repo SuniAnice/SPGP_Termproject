@@ -9,6 +9,7 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 
 public class Enemy implements GameObject {
     private final Player player;
@@ -102,6 +103,7 @@ public class Enemy implements GameObject {
             player.hp -= currAttack;
             Effector e = new Effector(new AnimationGameBitmap(R.mipmap.damage, 5, 5),260,150, 0.8f);
             MainScene.scene.add(MainScene.Layer.effect, e);
+            Sound.play(R.raw.damage);
         }
         currAttack = attack;
     }

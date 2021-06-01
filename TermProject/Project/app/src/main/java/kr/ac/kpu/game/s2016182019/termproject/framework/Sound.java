@@ -9,13 +9,15 @@ import android.util.Log;
 
 import java.util.HashMap;
 
+import kr.ac.kpu.game.s2016182019.termproject.R;
+
 
 public class Sound {
     private static final String TAG = kr.ac.kpu.game.s2016182019.termproject.framework.Sound.class.getSimpleName();
     private static SoundPool soundPool;
 
     private static final int[] SOUND_IDS = {
-
+            R.raw.mana, R.raw.magic, R.raw.damage
     };
     private static HashMap<Integer, Integer> soundIdMap = new HashMap<Integer, Integer>();
 

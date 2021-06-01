@@ -11,6 +11,7 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
 import kr.ac.kpu.game.s2016182019.termproject.utils.CollisionHelper;
 
@@ -131,7 +132,7 @@ public class Board implements GameObject {
                         // 대각선2
                         {
                             int count = 1;
-                            while (i - count > 0 && j + count < 8) {
+                            while (i - count >= 0 && j + count < 8) {
                                 if (blocks[i - count][j + count].type == tIndex){
                                     count++;
                                 } else {
@@ -183,6 +184,7 @@ public class Board implements GameObject {
                         MainScene.scene.add(MainScene.Layer.effect, e);
                         blocks[i][j] = null;
                         movingBlocks++;
+                        Sound.play(R.raw.mana);
                         continue;
                     }
                     if (j < 7) {
@@ -198,7 +200,6 @@ public class Board implements GameObject {
                         movingBlocks++;
                     }
                     blocks[i][j].update();
-
                 }
             }
         }

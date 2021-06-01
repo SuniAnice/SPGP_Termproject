@@ -10,6 +10,7 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 
 public class SkillUI implements GameObject, BoxCollidable {
     private final int x;
@@ -64,7 +65,9 @@ public class SkillUI implements GameObject, BoxCollidable {
                             }
                         }
                     }
+                    Sound.play(R.raw.magic);
                 }
+                Sound.play(R.raw.magic);
 
                 break;
             case 1:
@@ -80,6 +83,8 @@ public class SkillUI implements GameObject, BoxCollidable {
                             }
                         }
                     }
+                    Sound.play(R.raw.magic);
+
                 }
                 break;
             case 2:
@@ -95,6 +100,8 @@ public class SkillUI implements GameObject, BoxCollidable {
                             }
                         }
                     }
+                    Sound.play(R.raw.magic);
+
                 }
                 break;
             case 3:
@@ -108,6 +115,8 @@ public class SkillUI implements GameObject, BoxCollidable {
                             }
                         }
                     }
+                    Sound.play(R.raw.magic);
+
                 }
                 break;
         }
