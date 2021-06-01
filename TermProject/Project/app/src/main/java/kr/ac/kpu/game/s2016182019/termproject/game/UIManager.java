@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
+import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.utils.CollisionHelper;
@@ -56,13 +57,13 @@ public class UIManager implements GameObject {
 
     @Override
     public void update() {
-        MainGame game = MainGame.get();
-        healthText.setNum(game.player.hp);
-        redText.setNum(game.player.manaRed);
-        greenText.setNum(game.player.manaGreen);
-        blueText.setNum(game.player.manaBlue);
-        blackText.setNum(game.player.manaBlack);
-        whiteText.setNum(game.player.manaWhite);
+        BaseGame game = BaseGame.get();
+        healthText.setNum(MainScene.scene.player.hp);
+        redText.setNum(MainScene.scene.player.manaRed);
+        greenText.setNum(MainScene.scene.player.manaGreen);
+        blueText.setNum(MainScene.scene.player.manaBlue);
+        blackText.setNum(MainScene.scene.player.manaBlack);
+        whiteText.setNum(MainScene.scene.player.manaWhite);
     }
 
     @Override

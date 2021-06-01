@@ -8,6 +8,7 @@ import java.util.Random;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
 import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
+import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
@@ -43,7 +44,6 @@ public class Board implements GameObject {
     }
 
     public Board() {
-        MainGame game = MainGame.get();
         this.x = GameView.view.getWidth() / 2;
         this.y = GameView.view.getHeight() / 2;
         this.bitmap = new GameBitmap(R.mipmap.board);
@@ -69,7 +69,7 @@ public class Board implements GameObject {
     }
     @Override
     public void update() {
-        MainGame game = MainGame.get();
+        BaseGame game = BaseGame.get();
         movingBlocks = 0;
         Random r = new Random();
 
@@ -156,31 +156,31 @@ public class Board implements GameObject {
                     if (blocks[i][j].boom) {
                         switch (blocks[i][j].type){
                             case Red:
-                                game.player.manaRed++;
+                                MainScene.scene.player.manaRed++;
                                 break;
                             case Green:
-                                game.player.manaGreen++;
+                                MainScene.scene.player.manaGreen++;
                                 break;
                             case Blue:
-                                game.player.manaBlue++;
+                                MainScene.scene.player.manaBlue++;
                                 break;
                             case Black:
-                                game.player.manaBlack++;
+                                MainScene.scene.player.manaBlack++;
                                 break;
                             case White:
-                                game.player.manaWhite++;
+                                MainScene.scene.player.manaWhite++;
                                 break;
                             case Sword:
-                                if (game.enemy.hp > 0)
-                                    game.enemy.hp--;
+                                if (MainScene.scene.enemy.hp > 0)
+                                    MainScene.scene.enemy.hp--;
                                 break;
                             case Shield:
-                                if (game.enemy.currAttack > 0)
-                                        game.enemy.currAttack--;
+                                if (MainScene.scene.enemy.currAttack > 0)
+                                    MainScene.scene.enemy.currAttack--;
                                 break;
                         }
                         Effector e = new Effector(new AnimationGameBitmap(R.mipmap.explosion,8,8),blocks[i][j].x, blocks[i][j].y, 0.9f);
-                        game.add(MainGame.Layer.effect, e);
+                        MainScene.scene.add(MainScene.Layer.effect, e);
                         blocks[i][j] = null;
                         movingBlocks++;
                         continue;
@@ -230,7 +230,7 @@ public class Board implements GameObject {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
-        MainGame game = MainGame.get();
+        BaseGame game = BaseGame.get();
         float x = event.getX();
         float y = event.getY();
 
@@ -255,8 +255,8 @@ public class Board implements GameObject {
                                 canMove = false;
                                 turn--;
                                 if (turn == 0) {
-                                    turn = game.enemy.turn;
-                                    game.enemy.doAttack();
+                                    turn = MainScene.scene.enemy.turn;
+                                    MainScene.scene.enemy.doAttack();
                                 }
                             }
                             else

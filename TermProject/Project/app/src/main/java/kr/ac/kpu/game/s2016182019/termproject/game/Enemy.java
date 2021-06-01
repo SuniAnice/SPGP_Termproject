@@ -6,6 +6,7 @@ import java.util.Random;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
 import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
+import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 
@@ -71,8 +72,8 @@ public class Enemy implements GameObject {
     }
 
     public Enemy() {
-        MainGame game = MainGame.get();
-        player = game.player;
+        BaseGame game = BaseGame.get();
+        player = MainScene.scene.player;
         backGroundBitmap = new GameBitmap(R.mipmap.forest);
         uiBitmap = new GameBitmap(R.mipmap.enemyui);
         healthText = new Text(2000, 580);
@@ -83,7 +84,7 @@ public class Enemy implements GameObject {
     }
 
     public void initialize(int index, int wave) {
-        MainGame game = MainGame.get();
+        BaseGame game = BaseGame.get();
         Type t;
         t = Type.values()[index];
         float multi = (float) (1 + 0.05 * wave);
@@ -93,31 +94,31 @@ public class Enemy implements GameObject {
         this.hp = Math.round(t.hp() * multi);
         this.enemyBitmap = t.bitmap();
 
-        game.board.turn = this.turn;
+        MainScene.scene.board.turn = this.turn;
 
         currAttack = attack;
     }
 
     public void doAttack() {
-        MainGame game = MainGame.get();
+        BaseGame game = BaseGame.get();
         player.hp -= currAttack;
         currAttack = attack;
         Effector e = new Effector(new AnimationGameBitmap(R.mipmap.damage, 5, 5),260,150, 0.8f);
-        game.add(MainGame.Layer.effect, e);
+        MainScene.scene.add(MainScene.Layer.effect, e);
     }
 
     @Override
     public void update() {
-        MainGame game = MainGame.get();
+        BaseGame game = BaseGame.get();
         healthText.setNum(hp);
         attackText.setNum(currAttack);
-        turnText.setNum(game.board.turn);
+        turnText.setNum(MainScene.scene.board.turn);
 
         if (hp == 0)
         {
             Random r = new Random();
             initialize(r.nextInt(3), wave++);
-            game.player.initialize();
+            MainScene.scene.player.initialize();
         }
     }
 

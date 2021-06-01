@@ -2,8 +2,8 @@ package kr.ac.kpu.game.s2016182019.termproject.game;
 
 import android.graphics.Canvas;
 
-import kr.ac.kpu.game.s2016182019.termproject.R;
 import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
+import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 
 public class Effector implements GameObject {
@@ -24,10 +24,10 @@ public class Effector implements GameObject {
 
     @Override
     public void update() {
-        MainGame game = MainGame.get();
+        BaseGame game = BaseGame.get();
         lifeTime -= game.frameTime;
         if (lifeTime < 0)
-           game.remove(this);
+           MainScene.scene.remove(this);
     }
 
     @Override

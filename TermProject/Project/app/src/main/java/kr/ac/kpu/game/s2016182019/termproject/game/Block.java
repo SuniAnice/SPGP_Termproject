@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
+import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
@@ -47,7 +48,7 @@ public class Block implements GameObject, BoxCollidable {
 
     @Override
     public void update() {
-        MainGame game = MainGame.get();
+        BaseGame game = BaseGame.get();
         float dx = (Math.abs(tx - x) + SPEED) * game.frameTime;
         float dy = (Math.abs(ty - y) + SPEED) * game.frameTime;
         // 위치 스왑
