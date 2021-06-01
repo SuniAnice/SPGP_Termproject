@@ -72,7 +72,6 @@ public class Enemy implements GameObject {
     }
 
     public Enemy() {
-        BaseGame game = BaseGame.get();
         player = MainScene.scene.player;
         backGroundBitmap = new GameBitmap(R.mipmap.forest);
         uiBitmap = new GameBitmap(R.mipmap.enemyui);
@@ -84,7 +83,6 @@ public class Enemy implements GameObject {
     }
 
     public void initialize(int index, int wave) {
-        BaseGame game = BaseGame.get();
         Type t;
         t = Type.values()[index];
         float multi = (float) (1 + 0.05 * wave);
@@ -100,16 +98,16 @@ public class Enemy implements GameObject {
     }
 
     public void doAttack() {
-        BaseGame game = BaseGame.get();
-        player.hp -= currAttack;
+        if (currAttack != 0) {
+            player.hp -= currAttack;
+            Effector e = new Effector(new AnimationGameBitmap(R.mipmap.damage, 5, 5),260,150, 0.8f);
+            MainScene.scene.add(MainScene.Layer.effect, e);
+        }
         currAttack = attack;
-        Effector e = new Effector(new AnimationGameBitmap(R.mipmap.damage, 5, 5),260,150, 0.8f);
-        MainScene.scene.add(MainScene.Layer.effect, e);
     }
 
     @Override
     public void update() {
-        BaseGame game = BaseGame.get();
         healthText.setNum(hp);
         attackText.setNum(currAttack);
         turnText.setNum(MainScene.scene.board.turn);
