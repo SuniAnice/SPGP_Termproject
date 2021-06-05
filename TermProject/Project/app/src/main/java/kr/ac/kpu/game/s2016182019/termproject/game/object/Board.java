@@ -202,15 +202,16 @@ public class Board implements GameObject {
                     if (blocks[i][j].isMoving) {
                         movingBlocks++;
                     }
-                    if (soundflag) {
-                        Sound.play(R.raw.mana);
-                        soundflag = false;
-                    }
+
                     blocks[i][j].update();
                 }
             }
         }
 
+        if (soundflag) {
+            Sound.play(R.raw.mana);
+            soundflag = false;
+        }
         for (int i = 0; i< 8;i++){
             if (blocks[i][0] == null){
                 blocks[i][0] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (-0.5) + offsetY), r.nextInt(7));

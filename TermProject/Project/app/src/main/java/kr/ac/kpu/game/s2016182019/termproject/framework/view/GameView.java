@@ -116,4 +116,8 @@ public class GameView extends View {
         }
         return null;
     }
+
+    public boolean handleBackKey() {
+        return BaseGame.get().handleBackKey();
+    }
 }
