@@ -1,15 +1,17 @@
-package kr.ac.kpu.game.s2016182019.termproject.game;
+package kr.ac.kpu.game.s2016182019.termproject.game.Scene;
 
-import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.ac.kpu.game.s2016182019.termproject.R;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
-import kr.ac.kpu.game.s2016182019.termproject.framework.Scene;
+import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
+import kr.ac.kpu.game.s2016182019.termproject.game.object.Board;
+import kr.ac.kpu.game.s2016182019.termproject.game.object.Enemy;
+import kr.ac.kpu.game.s2016182019.termproject.game.object.Player;
 
 
 public class MainScene extends Scene {
@@ -42,6 +44,7 @@ public class MainScene extends Scene {
         scene = this;
         super.start();
         initResources();
+
     }
 
     public boolean initResources() {
@@ -64,6 +67,7 @@ public class MainScene extends Scene {
 
         player.initialize();
         player.enemy = enemy;
+
 
 
         initialized = true;

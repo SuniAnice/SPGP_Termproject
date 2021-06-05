@@ -1,13 +1,10 @@
-package kr.ac.kpu.game.s2016182019.termproject.game;
+package kr.ac.kpu.game.s2016182019.termproject.game.object;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import java.util.ArrayList;
-
-import kr.ac.kpu.game.s2016182019.termproject.R;
-import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.game.UI.UIManager;
 
 public class Player implements GameObject {
 

@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016182019.termproject.game;
+package kr.ac.kpu.game.s2016182019.termproject.game.object;
 
 import android.graphics.Canvas;
 
@@ -6,10 +6,12 @@ import java.util.Random;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
 import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
-import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
+import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
+import kr.ac.kpu.game.s2016182019.termproject.game.UI.Text;
 
 public class Enemy implements GameObject {
     private final Player player;

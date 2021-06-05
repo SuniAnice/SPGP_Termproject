@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016182019.termproject.game;
+package kr.ac.kpu.game.s2016182019.termproject.game.object;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -8,17 +8,19 @@ import java.util.Random;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
 import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
-import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
+import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
 import kr.ac.kpu.game.s2016182019.termproject.utils.CollisionHelper;
 
 import static kr.ac.kpu.game.s2016182019.termproject.utils.SwapHelper.swap;
 
 public class Board implements GameObject {
-    static kr.ac.kpu.game.s2016182019.termproject.game.Board instance;
+    static Board instance;
     private final int x;
     private final int y;
     private final GameBitmap bitmap;
@@ -36,10 +38,11 @@ public class Board implements GameObject {
     public Block blocks[][];
     private int selectX;
     private int selectY;
+    private boolean soundflag;
 
-    public static kr.ac.kpu.game.s2016182019.termproject.game.Board get() {
+    public static Board get() {
         if (instance == null) {
-            instance = new kr.ac.kpu.game.s2016182019.termproject.game.Board();
+            instance = new Board();
         }
         return instance;
     }
@@ -180,11 +183,11 @@ public class Board implements GameObject {
                                     MainScene.scene.enemy.currAttack--;
                                 break;
                         }
+                        soundflag = true;
                         Effector e = new Effector(new AnimationGameBitmap(R.mipmap.explosion,8,8),blocks[i][j].x, blocks[i][j].y, 0.9f);
                         MainScene.scene.add(MainScene.Layer.effect, e);
                         blocks[i][j] = null;
                         movingBlocks++;
-                        Sound.play(R.raw.mana);
                         continue;
                     }
                     if (j < 7) {
@@ -198,6 +201,10 @@ public class Board implements GameObject {
                     }
                     if (blocks[i][j].isMoving) {
                         movingBlocks++;
+                    }
+                    if (soundflag) {
+                        Sound.play(R.raw.mana);
+                        soundflag = false;
                     }
                     blocks[i][j].update();
                 }

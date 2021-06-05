@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016182019.termproject.game;
+package kr.ac.kpu.game.s2016182019.termproject.game.UI;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -6,11 +6,13 @@ import android.graphics.RectF;
 import java.util.Random;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
-import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
+import kr.ac.kpu.game.s2016182019.termproject.game.object.Block;
 
 public class SkillUI implements GameObject, BoxCollidable {
     private final int x;
@@ -65,9 +67,9 @@ public class SkillUI implements GameObject, BoxCollidable {
                             }
                         }
                     }
+
                     Sound.play(R.raw.magic);
                 }
-                Sound.play(R.raw.magic);
 
                 break;
             case 1:

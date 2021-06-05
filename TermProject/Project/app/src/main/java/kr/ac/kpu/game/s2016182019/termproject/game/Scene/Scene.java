@@ -1,11 +1,13 @@
-package kr.ac.kpu.game.s2016182019.termproject.framework;
+package kr.ac.kpu.game.s2016182019.termproject.game.Scene;
 
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
+import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.framework.Recycleable;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
-import kr.ac.kpu.game.s2016182019.termproject.game.MainScene;
 
 public class Scene {
     protected ArrayList<ArrayList<GameObject>> layers;

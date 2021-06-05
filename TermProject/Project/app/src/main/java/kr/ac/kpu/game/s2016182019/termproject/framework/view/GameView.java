@@ -12,8 +12,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
-import kr.ac.kpu.game.s2016182019.termproject.game.MainScene;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();

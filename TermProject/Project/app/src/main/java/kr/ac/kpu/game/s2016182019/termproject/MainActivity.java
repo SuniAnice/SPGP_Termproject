@@ -4,8 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
-import kr.ac.kpu.game.s2016182019.termproject.framework.MainGame;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
 
 public class MainActivity extends AppCompatActivity {
 

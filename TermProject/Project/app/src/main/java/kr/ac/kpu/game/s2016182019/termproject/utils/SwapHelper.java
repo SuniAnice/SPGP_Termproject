@@ -1,6 +1,6 @@
 package kr.ac.kpu.game.s2016182019.termproject.utils;
 
-import kr.ac.kpu.game.s2016182019.termproject.game.Block;
+import kr.ac.kpu.game.s2016182019.termproject.game.object.Block;
 
 public class SwapHelper {
     public static void swap(Block o1, Block o2) {

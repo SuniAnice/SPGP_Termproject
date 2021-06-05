@@ -1,10 +1,11 @@
-package kr.ac.kpu.game.s2016182019.termproject.game;
+package kr.ac.kpu.game.s2016182019.termproject.game.UI;
 
 import android.graphics.Canvas;
 
 import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
-import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
 
 public class Effector implements GameObject {
 

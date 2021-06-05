@@ -3,6 +3,7 @@ package kr.ac.kpu.game.s2016182019.termproject.framework;
 import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.util.Log;
@@ -17,9 +18,11 @@ public class Sound {
     private static SoundPool soundPool;
 
     private static final int[] SOUND_IDS = {
-            R.raw.mana, R.raw.magic, R.raw.damage
+            R.raw.mana, R.raw.magic, R.raw.damage, R.raw.battle,
     };
     private static HashMap<Integer, Integer> soundIdMap = new HashMap<Integer, Integer>();
+    private static int bgmID = 0;
+    private static MediaPlayer mp;
 
     public static void init(Context context) {
         AudioAttributes audioAttributes;
@@ -30,17 +33,21 @@ public class Sound {
                     .build();
             kr.ac.kpu.game.s2016182019.termproject.framework.Sound.soundPool = new SoundPool.Builder()
                     .setAudioAttributes(audioAttributes)
-                    .setMaxStreams(3)
+                    .setMaxStreams(5)
                     .build();
         } else {
-            kr.ac.kpu.game.s2016182019.termproject.framework.Sound.soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC,0);
+            kr.ac.kpu.game.s2016182019.termproject.framework.Sound.soundPool = new SoundPool(5, AudioManager.STREAM_MUSIC,0);
         }
 
         for (int resId : SOUND_IDS) {
             int soundId = soundPool.load(context, resId, 1);
             soundIdMap.put(resId, soundId);
         }
+        mp = MediaPlayer.create(context, R.raw.battle);
+        mp.setLooping(true);
+        mp.start();
     }
+
 
 
     public static int play(int resId) {

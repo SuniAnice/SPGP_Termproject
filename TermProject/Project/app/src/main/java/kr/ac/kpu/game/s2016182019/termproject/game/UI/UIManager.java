@@ -1,12 +1,13 @@
-package kr.ac.kpu.game.s2016182019.termproject.game;
+package kr.ac.kpu.game.s2016182019.termproject.game.UI;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
-import kr.ac.kpu.game.s2016182019.termproject.framework.BaseGame;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
 import kr.ac.kpu.game.s2016182019.termproject.utils.CollisionHelper;
 
 public class UIManager implements GameObject {
@@ -38,7 +39,7 @@ public class UIManager implements GameObject {
         skillSlots[3] = new SkillUI(270,970);
     }
 
-    void setSkill(int slot, int index) {
+    public void setSkill(int slot, int index) {
         switch (slot) {
             case 1:
                 skillSlots[0].setSkill(index);

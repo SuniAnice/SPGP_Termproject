@@ -1,6 +1,6 @@
-package kr.ac.kpu.game.s2016182019.termproject.framework;
+package kr.ac.kpu.game.s2016182019.termproject.framework.game;
 
-import kr.ac.kpu.game.s2016182019.termproject.game.MainScene;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
 
 public class MainGame extends BaseGame {
     private boolean initialized;
