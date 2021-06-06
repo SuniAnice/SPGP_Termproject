@@ -18,7 +18,7 @@ public class Sound {
     private static SoundPool soundPool;
 
     private static final int[] SOUND_IDS = {
-            R.raw.mana, R.raw.magic, R.raw.damage, R.raw.battle,
+            R.raw.mana, R.raw.magic, R.raw.damage, R.raw.attack
     };
     private static HashMap<Integer, Integer> soundIdMap = new HashMap<Integer, Integer>();
     private static int bgmID = 0;

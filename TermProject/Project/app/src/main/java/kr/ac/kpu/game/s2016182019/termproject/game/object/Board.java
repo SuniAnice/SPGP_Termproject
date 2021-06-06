@@ -39,6 +39,7 @@ public class Board implements GameObject {
     private int selectX;
     private int selectY;
     private boolean soundflag;
+    private boolean attackflag;
 
     public static Board get() {
         if (instance == null) {
@@ -177,6 +178,7 @@ public class Board implements GameObject {
                             case Sword:
                                 if (MainScene.scene.enemy.hp > 0)
                                     MainScene.scene.enemy.hp--;
+                                attackflag = true;
                                 break;
                             case Shield:
                                 if (MainScene.scene.enemy.currAttack > 0)
@@ -211,6 +213,12 @@ public class Board implements GameObject {
         if (soundflag) {
             Sound.play(R.raw.mana);
             soundflag = false;
+        }
+        if (attackflag) {
+            Effector e = new Effector(new AnimationGameBitmap(R.mipmap.damage, 5, 5),1825,350, 0.8f);
+            MainScene.scene.add(MainScene.Layer.effect, e);
+            Sound.play(R.raw.attack);
+            attackflag = false;
         }
         for (int i = 0; i< 8;i++){
             if (blocks[i][0] == null){
