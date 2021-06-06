@@ -104,5 +104,5 @@ public class MainScene extends Scene {
         add(layer.ordinal(), obj);
     }
 
-
+    public boolean handleBackKey() { return true; }
 }

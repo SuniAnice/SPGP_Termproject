@@ -22,6 +22,8 @@ public class Player implements GameObject {
     public int attack = 0;
     public int defence = 0;
 
+    public int score = 0;
+
 
     public Player() {
         playerUI = new UIManager();

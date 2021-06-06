@@ -9,6 +9,8 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.ChooseScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.UI.Text;
@@ -55,9 +57,9 @@ public class Enemy implements GameObject {
         int attack() {
             int t = 5;
             switch (this) {
-                case T_ORC: t = 10; break;
-                case T_SLIME: t = 5; break;
-                case T_GRASSHOPPER: t = 3; break;
+                case T_ORC: t = 12; break;
+                case T_SLIME: t = 7; break;
+                case T_GRASSHOPPER: t = 5; break;
             }
             return t;
         }
@@ -116,19 +118,12 @@ public class Enemy implements GameObject {
         attackText.setNum(currAttack);
         turnText.setNum(MainScene.scene.board.turn);
 
-        if (hp == 0)
+        if (hp <= 50)
         {
-            Random r = new Random();
-            initialize(r.nextInt(3), wave++);
+            MainGame.get().push(new ChooseScene());
+            MainScene.scene.player.score++;
             MainScene.scene.player.initialize();
 
-            for (int i = 0; i < 8; i++) {
-                for (int j = 0; j < 8; j++) {
-                    if (MainScene.scene.board.blocks[i][j] != null) {
-                        MainScene.scene.board.blocks[i][j].change(Block.blockType.values()[r.nextInt(7)]);
-                    }
-                }
-            }
         }
     }
 

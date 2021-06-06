@@ -1,6 +1,7 @@
 package kr.ac.kpu.game.s2016182019.termproject.game.Scene;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
@@ -12,6 +13,7 @@ import kr.ac.kpu.game.s2016182019.termproject.game.object.Block;
 import kr.ac.kpu.game.s2016182019.termproject.game.object.ImageObject;
 
 public class TitleScene extends Scene {
+    private static final String TAG = TitleScene.class.getSimpleName();
 
     enum Layer {
         bg, COUNT
@@ -34,8 +36,8 @@ public class TitleScene extends Scene {
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
+
             MainGame.get().push(new MainScene());
-            //MainGame.get().popScene();
         }
         return super.onTouchEvent(e);
     }

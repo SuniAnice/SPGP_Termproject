@@ -1,0 +1,68 @@
+package kr.ac.kpu.game.s2016182019.termproject.game.Scene;
+
+import android.util.Log;
+import android.view.MotionEvent;
+
+import java.util.Random;
+
+import kr.ac.kpu.game.s2016182019.termproject.R;
+import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
+import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
+import kr.ac.kpu.game.s2016182019.termproject.game.UI.Text;
+import kr.ac.kpu.game.s2016182019.termproject.game.object.Block;
+import kr.ac.kpu.game.s2016182019.termproject.game.object.ImageObject;
+
+public class ChooseScene extends Scene {
+    private static final String TAG = ChooseScene.class.getSimpleName();
+
+    enum Layer {
+        bg, COUNT
+    }
+    public static ChooseScene scene;
+    public void add(ChooseScene.Layer layer, GameObject obj) {
+        add(layer.ordinal(), obj);
+    }
+    @Override
+    public void start() {
+        super.start();
+        transparent = true;
+        int w = GameView.view.getWidth();
+        int h = GameView.view.getHeight();
+        initLayers(TitleScene.Layer.COUNT.ordinal());
+
+        //playerhp = new Text()
+
+        add(ChooseScene.Layer.bg, new ImageObject(R.mipmap.choose,w/2, 0 , 0.8f, h/2));
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        if (e.getAction() == MotionEvent.ACTION_DOWN) {
+            if (e.getY() > 200 && e.getY() < 900) {
+                if (e.getX() > 300 && e.getX() < 950) {
+                    Random r = new Random();
+                    MainScene.scene.enemy.initialize(r.nextInt(3), MainScene.scene.enemy.wave++);
+
+                    for (int i = 0; i < 8; i++) {
+                        for (int j = 0; j < 8; j++) {
+                            if (MainScene.scene.board.blocks[i][j] != null) {
+                                MainScene.scene.board.blocks[i][j].change(Block.blockType.values()[r.nextInt(7)]);
+                            }
+                        }
+                    }
+                    MainGame.get().popScene();
+                }
+                else if (e.getX() > 1050 && e.getX() < 1730) {
+                    if (MainScene.scene.player.hp != MainScene.scene.player.maxHp) {
+                        MainScene.scene.player.hp = MainScene.scene.player.maxHp;
+                        MainScene.scene.enemy.wave += 2;
+                    }
+                }
+            }
+            Log.d(TAG, "x : " + e.getX() + "y : " + e.getY());
+        }
+        return true;
+    }
+}

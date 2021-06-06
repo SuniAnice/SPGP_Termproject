@@ -8,10 +8,12 @@ import android.graphics.RectF;
 import kr.ac.kpu.game.s2016182019.termproject.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
 
 
 public class ImageObject implements GameObject, BoxCollidable {
+    private float gy = -1;
     protected Bitmap bitmap;
 
     protected Rect srcRect = new Rect();
@@ -19,6 +21,11 @@ public class ImageObject implements GameObject, BoxCollidable {
     protected ImageObject() {}
     public ImageObject(int resId, float x, float y, float multi) {
         init(resId, x, y, multi);
+    }
+
+    public ImageObject(int resId, float x, float y, float multi, float gy) {
+        init(resId, x, y, multi);
+        this.gy = gy;
     }
     protected void init(int resId, float x, float y, float multi) {
         bitmap = GameBitmap.load(resId);
@@ -38,7 +45,11 @@ public class ImageObject implements GameObject, BoxCollidable {
 
     @Override
     public void update() {
-
+        MainGame game = MainGame.get();
+        if (gy > 0) {
+            dstRect.offset(0, game.frameTime * 500);
+            gy -= game.frameTime * 500;
+        }
     }
 
     @Override
