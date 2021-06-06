@@ -15,6 +15,8 @@ import kr.ac.kpu.game.s2016182019.termproject.game.object.ImageObject;
 
 public class ChooseScene extends Scene {
     private static final String TAG = ChooseScene.class.getSimpleName();
+    private Text playerhp;
+    private ImageObject health;
 
     enum Layer {
         bg, COUNT
@@ -31,9 +33,13 @@ public class ChooseScene extends Scene {
         int h = GameView.view.getHeight();
         initLayers(TitleScene.Layer.COUNT.ordinal());
 
-        //playerhp = new Text()
+        health = new ImageObject(R.mipmap.health, 1200, 900 - h / 2, 1.f, h / 2);
+        playerhp = new Text(1500,875 - h / 2 , h / 2 + 50);
+        playerhp.setNum(MainScene.scene.player.hp);
 
-        add(ChooseScene.Layer.bg, new ImageObject(R.mipmap.choose,w/2, 0 , 0.8f, h/2));
+        add(Layer.bg, new ImageObject(R.mipmap.choose,w/2, 0 , 0.8f, h/2));
+        add(Layer.bg, playerhp);
+        add(Layer.bg, health);
     }
 
 
@@ -58,6 +64,7 @@ public class ChooseScene extends Scene {
                     if (MainScene.scene.player.hp != MainScene.scene.player.maxHp) {
                         MainScene.scene.player.hp = MainScene.scene.player.maxHp;
                         MainScene.scene.enemy.wave += 2;
+                        playerhp.setNum(MainScene.scene.player.hp);
                     }
                 }
             }

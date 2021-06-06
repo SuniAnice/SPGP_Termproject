@@ -11,6 +11,7 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.ChooseScene;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.GameOverScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.UI.Text;
@@ -108,6 +109,9 @@ public class Enemy implements GameObject {
             Effector e = new Effector(new AnimationGameBitmap(R.mipmap.damage, 5, 5),260,150, 0.8f);
             MainScene.scene.add(MainScene.Layer.effect, e);
             Sound.play(R.raw.damage);
+            if (player.hp < 0) {
+                MainGame.get().push(new GameOverScene());
+            }
         }
         currAttack = attack;
     }
@@ -118,7 +122,7 @@ public class Enemy implements GameObject {
         attackText.setNum(currAttack);
         turnText.setNum(MainScene.scene.board.turn);
 
-        if (hp <= 50)
+        if (hp <= 0)
         {
             MainGame.get().push(new ChooseScene());
             MainScene.scene.player.score++;

@@ -8,12 +8,14 @@ import android.graphics.RectF;
 import kr.ac.kpu.game.s2016182019.termproject.R;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
 
 public class Text implements GameObject {
     private final Bitmap bitmap;
     private final int x;
-    private final int y;
+    private int y;
+    private int gy = -1;
 
     private Rect src = new Rect();
     private RectF dst = new RectF();
@@ -37,10 +39,22 @@ public class Text implements GameObject {
         this.y = y;
     }
 
+    public Text(int x, int y, int gy){
+        bitmap = GameBitmap.load(R.mipmap.number_24x32);
+        this.x = x;
+        this.y = y;
+        this.gy = gy;
+    }
+
     @Override
     public void update() {
         if (displaynum < num) {
             displaynum++;
+        }
+        MainGame game = MainGame.get();
+        if (gy > 0) {
+            y += game.frameTime * 500;
+            gy -= game.frameTime * 500;
         }
     }
 
