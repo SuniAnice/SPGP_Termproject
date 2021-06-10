@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: resource
+---
+
 # 스마트폰 게임 프로그래밍
 
 ## Term Project 최종 발표
