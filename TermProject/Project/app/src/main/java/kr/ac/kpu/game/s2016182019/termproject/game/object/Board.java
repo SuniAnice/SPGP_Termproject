@@ -8,13 +8,13 @@ import java.util.Random;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
 import kr.ac.kpu.game.s2016182019.termproject.framework.AnimationGameBitmap;
-import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
+import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
-import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
+import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
 import kr.ac.kpu.game.s2016182019.termproject.utils.CollisionHelper;
 
 import static kr.ac.kpu.game.s2016182019.termproject.utils.SwapHelper.swap;

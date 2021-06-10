@@ -45,6 +45,9 @@ public class Player implements GameObject {
         manaWhite = 0;
         attack = 0;
         defence = 0;
+
+    }
+    public void heal() {
         hp += Math.floor(maxHp / 10);
         hp = Math.min(hp,maxHp);
     }

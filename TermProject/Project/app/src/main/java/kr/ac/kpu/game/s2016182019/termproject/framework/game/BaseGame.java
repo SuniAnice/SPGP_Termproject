@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
-import kr.ac.kpu.game.s2016182019.termproject.game.Scene.Scene;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.Scene;
 
 public class BaseGame {
     private static final String TAG = BaseGame.class.getSimpleName();

@@ -1,8 +1,8 @@
 package kr.ac.kpu.game.s2016182019.termproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;

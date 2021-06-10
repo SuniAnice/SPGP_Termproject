@@ -1,15 +1,11 @@
 package kr.ac.kpu.game.s2016182019.termproject.game.Scene;
 
-import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import kr.ac.kpu.game.s2016182019.termproject.R;
-import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
 import kr.ac.kpu.game.s2016182019.termproject.framework.view.GameView;
-import kr.ac.kpu.game.s2016182019.termproject.game.object.Block;
 import kr.ac.kpu.game.s2016182019.termproject.game.object.ImageObject;
 
 public class TitleScene extends Scene {

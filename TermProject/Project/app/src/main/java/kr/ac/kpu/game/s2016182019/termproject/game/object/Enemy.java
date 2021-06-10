@@ -10,11 +10,10 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
-import kr.ac.kpu.game.s2016182019.termproject.game.Scene.ChooseScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.GameOverScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.ItemScene;
-import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
+import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
 import kr.ac.kpu.game.s2016182019.termproject.game.UI.Text;
 
 public class Enemy implements GameObject {
@@ -123,11 +122,11 @@ public class Enemy implements GameObject {
         attackText.setNum(currAttack);
         turnText.setNum(MainScene.scene.board.turn);
 
-        if (hp <= 70)
+        if (hp <= 700)
         {
             MainGame.get().push(new ItemScene());
             MainScene.scene.player.score++;
-            MainScene.scene.player.initialize();
+            MainScene.scene.player.heal();
 
         }
     }

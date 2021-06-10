@@ -24,6 +24,8 @@ public class CollisionHelper {
         return true;
     }
     public static boolean collides(BoxCollidable o1, float x, float y) {
+        if (o1 == null)
+            return false;
         o1.getBoundingRect(rect1);
 
         if (rect1.left > x) return false;

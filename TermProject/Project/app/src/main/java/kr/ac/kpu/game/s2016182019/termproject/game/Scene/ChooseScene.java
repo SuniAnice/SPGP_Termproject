@@ -50,7 +50,7 @@ public class ChooseScene extends Scene {
                 if (e.getX() > 300 && e.getX() < 950) {
                     Random r = new Random();
                     MainScene.scene.enemy.initialize(r.nextInt(3), MainScene.scene.enemy.wave++);
-
+                    MainScene.scene.player.initialize();
                     for (int i = 0; i < 8; i++) {
                         for (int j = 0; j < 8; j++) {
                             if (MainScene.scene.board.blocks[i][j] != null) {

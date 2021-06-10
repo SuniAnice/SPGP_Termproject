@@ -8,11 +8,12 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.BoxCollidable;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameBitmap;
 import kr.ac.kpu.game.s2016182019.termproject.framework.GameObject;
 import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
 
 public class ItemUI implements GameObject, BoxCollidable {
     private final int x;
     private int y;
-    private final int index;
+    public final int index;
     private int gy = -1;
     private GameBitmap bitmap;
 
@@ -37,6 +38,22 @@ public class ItemUI implements GameObject, BoxCollidable {
         }
     }
 
+    public void get() {
+        switch (index) {
+            case 0:
+                MainScene.scene.player.defence++;
+                break;
+            case 1:
+                MainScene.scene.player.attack++;
+                break;
+            case 2:
+                MainScene.scene.player.fire_orb++;
+                break;
+            default:
+                break;
+        }
+    }
+
 
     @Override
     public void draw(Canvas canvas) {
@@ -46,6 +63,6 @@ public class ItemUI implements GameObject, BoxCollidable {
 
     @Override
     public void getBoundingRect(RectF rect) {
-        bitmap.getBoundingRect(x, y, rect);
+        bitmap.getBoundingRect(x, y, rect, 0.8f);
     }
 }
