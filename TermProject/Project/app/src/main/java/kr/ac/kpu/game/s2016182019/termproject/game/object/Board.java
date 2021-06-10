@@ -218,6 +218,7 @@ public class Board implements GameObject {
             Effector e = new Effector(new AnimationGameBitmap(R.mipmap.damage, 5, 5),1825,350, 0.8f);
             MainScene.scene.add(MainScene.Layer.effect, e);
             Sound.play(R.raw.attack);
+            MainScene.scene.enemy.hp -= MainScene.scene.player.attack;
             attackflag = false;
         }
         for (int i = 0; i< 8;i++){

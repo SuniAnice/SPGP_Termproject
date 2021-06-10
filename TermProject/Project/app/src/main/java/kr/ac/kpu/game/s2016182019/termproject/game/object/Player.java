@@ -19,10 +19,13 @@ public class Player implements GameObject {
     public int manaBlue = 0;
     public int manaBlack = 0;
     public int manaWhite = 0;
+
     public int attack = 0;
     public int defence = 0;
 
     public int score = 0;
+
+    public int fire_orb = 0;
 
 
     public Player() {
@@ -35,7 +38,7 @@ public class Player implements GameObject {
 
 
     public void initialize() {
-        manaRed = 0;
+        manaRed = 5 * fire_orb;
         manaGreen = 0;
         manaBlue = 0;
         manaBlack = 0;

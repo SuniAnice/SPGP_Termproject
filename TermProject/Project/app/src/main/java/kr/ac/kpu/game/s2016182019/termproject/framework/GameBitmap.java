@@ -76,4 +76,15 @@ public class GameBitmap {
         float db = y + hh * GameView.MULTIPLIER;
        rect.set(dl, dt, dr, db);
     }
+
+    public void getBoundingRect(float x, float y, RectF rect, float mul) {
+        int hw = getWidth() / 2;
+        int hh = getHeight() / 2;
+
+        float dl = x - hw * GameView.MULTIPLIER * mul;
+        float dt = y - hh * GameView.MULTIPLIER * mul;
+        float dr = x + hw * GameView.MULTIPLIER * mul;
+        float db = y + hh * GameView.MULTIPLIER * mul;
+        rect.set(dl, dt, dr, db);
+    }
 }

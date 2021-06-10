@@ -12,6 +12,7 @@ import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 import kr.ac.kpu.game.s2016182019.termproject.framework.game.MainGame;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.ChooseScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.GameOverScene;
+import kr.ac.kpu.game.s2016182019.termproject.game.Scene.ItemScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.UI.Effector;
 import kr.ac.kpu.game.s2016182019.termproject.game.Scene.MainScene;
 import kr.ac.kpu.game.s2016182019.termproject.game.UI.Text;
@@ -94,7 +95,7 @@ public class Enemy implements GameObject {
         float multi = (float) (1 + 0.05 * wave);
 
         this.turn = t.turn();
-        this.attack = Math.round(t.attack() * multi);
+        this.attack = Math.round(t.attack() * multi) - player.defence;
         this.hp = Math.round(t.hp() * multi);
         this.enemyBitmap = t.bitmap();
 
@@ -122,9 +123,9 @@ public class Enemy implements GameObject {
         attackText.setNum(currAttack);
         turnText.setNum(MainScene.scene.board.turn);
 
-        if (hp <= 0)
+        if (hp <= 70)
         {
-            MainGame.get().push(new ChooseScene());
+            MainGame.get().push(new ItemScene());
             MainScene.scene.player.score++;
             MainScene.scene.player.initialize();
 

@@ -33,11 +33,11 @@ public class ChooseScene extends Scene {
         int h = GameView.view.getHeight();
         initLayers(TitleScene.Layer.COUNT.ordinal());
 
-        health = new ImageObject(R.mipmap.health, 1200, 900 - h / 2, 1.f, h / 2);
-        playerhp = new Text(1500,875 - h / 2 , h / 2 + 50);
+        health = new ImageObject(R.mipmap.health, 1200, 900, 1.f);
+        playerhp = new Text(1500,875);
         playerhp.setNum(MainScene.scene.player.hp);
 
-        add(Layer.bg, new ImageObject(R.mipmap.choose,w/2, 0 , 0.8f, h/2));
+        add(Layer.bg, new ImageObject(R.mipmap.choose,w/2, h/2 , 0.8f));
         add(Layer.bg, playerhp);
         add(Layer.bg, health);
     }
