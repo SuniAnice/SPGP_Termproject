@@ -1,7 +1,3 @@
----
-typora-copy-images-to: resource
----
-
 # 스마트폰 게임 프로그래밍
 
 ## Term Project 최종 발표
@@ -10,15 +6,15 @@ typora-copy-images-to: resource
 
 #### 게임 소개: 애니팡과 같은 3-매치 퍼즐 게임에  RPG 요소를 더한 게임
 
-![KakaoTalk_20210611_024737537](F:\Code\SPGP\mygit\SPGP_Termproject\TermProject\resource\KakaoTalk_20210611_024737537.jpg)
+![KakaoTalk_20210611_024737537](resource\KakaoTalk_20210611_024737537.jpg)
 
 색깔 블럭을 파괴해 마나를 모아서 스킬을 사용하고, 검 블럭을 파괴해서 적을 공격하고, 방패 블럭을 파괴하여 적의 공격을 막는다.
 
-![2](F:\Code\SPGP\mygit\SPGP_Termproject\TermProject\resource\2.jpg)
+![2](resource\2.jpg)
 
 적을 처치하면 랜덤으로 선택되는 보상 중에서 하나를 선택할 수 있다.
 
-![3](F:\Code\SPGP\mygit\SPGP_Termproject\TermProject\resource\3.jpg)
+![3](resource\3.jpg)
 
 점점 강해지는 적들을 상대로 최대한 적을 많이 처치하는 것이 목표이다.
 
@@ -38,7 +34,7 @@ typora-copy-images-to: resource
 
 #### 커밋 상황
 
-![git](F:\Code\SPGP\mygit\SPGP_Termproject\TermProject\resource\git.PNG)
+![git](resource\git.PNG)
 
 |  주차  | 커밋 수 |
 | :----: | :-----: |
