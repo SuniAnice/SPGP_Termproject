@@ -28,7 +28,7 @@ public class GameOverScene extends Scene {
         int h = GameView.view.getHeight();
         initLayers(TitleScene.Layer.COUNT.ordinal());
 
-        scoretext = new Text(w / 2, 0, h / 2 + 50);
+        scoretext = new Text((int) (w / 2 / 1.33f), 0, h / 2 + 50);
         scoretext.setNum(MainScene.scene.player.score);
         add(Layer.bg, new ImageObject(R.mipmap.gameover,w/2, 0 , 0.8f, h/2));
         add(Layer.bg, scoretext);

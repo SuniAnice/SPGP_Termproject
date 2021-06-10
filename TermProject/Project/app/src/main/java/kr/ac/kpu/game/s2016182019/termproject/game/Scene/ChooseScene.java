@@ -33,7 +33,7 @@ public class ChooseScene extends Scene {
         int h = GameView.view.getHeight();
         initLayers(TitleScene.Layer.COUNT.ordinal());
 
-        health = new ImageObject(R.mipmap.health, 1200, 900, 1.f);
+        health = new ImageObject(R.mipmap.health, 1200 * 1.33f, 900 * 1.33f, 1.f);
         playerhp = new Text(1500,875);
         playerhp.setNum(MainScene.scene.player.hp);
 
@@ -46,8 +46,8 @@ public class ChooseScene extends Scene {
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
-            if (e.getY() > 200 && e.getY() < 900) {
-                if (e.getX() > 300 && e.getX() < 950) {
+            if (e.getY() > 200 * 1.33f && e.getY() < 900 * 1.33f) {
+                if (e.getX() > 300 * 1.33f && e.getX() < 950 * 1.33f) {
                     Random r = new Random();
                     MainScene.scene.enemy.initialize(r.nextInt(3), MainScene.scene.enemy.wave++);
                     MainScene.scene.player.initialize();
@@ -60,7 +60,7 @@ public class ChooseScene extends Scene {
                     }
                     MainGame.get().popScene();
                 }
-                else if (e.getX() > 1050 && e.getX() < 1730) {
+                else if (e.getX() > 1050 * 1.33f && e.getX() < 1730 * 1.33f) {
                     if (MainScene.scene.player.hp != MainScene.scene.player.maxHp) {
                         MainScene.scene.player.hp = MainScene.scene.player.maxHp;
                         MainScene.scene.enemy.wave += 2;

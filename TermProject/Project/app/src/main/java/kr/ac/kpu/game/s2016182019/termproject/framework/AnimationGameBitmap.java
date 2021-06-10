@@ -43,7 +43,7 @@ public class AnimationGameBitmap extends GameBitmap {
         float hw = fw / 2 * GameView.MULTIPLIER;
         float hh = h / 2 * GameView.MULTIPLIER;
         srcRect.set(fw * frameIndex, 0, fw * frameIndex + fw, h);
-        dstRect.set(x - hw, y - hh, x + hw, y + hh);
+        dstRect.set((x - hw) * 1.33f, (y - hh) * 1.33f, (x + hw) * 1.33f, (y + hh) * 1.33f);
 
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
 
@@ -58,7 +58,7 @@ public class AnimationGameBitmap extends GameBitmap {
         float hw = fw / 2 * GameView.MULTIPLIER * multi;
         float hh = h / 2 * GameView.MULTIPLIER * multi;
         srcRect.set(fw * frameIndex, 0, fw * frameIndex + fw, h);
-        dstRect.set(x - hw, y - hh, x + hw, y + hh);
+        dstRect.set((x - hw) * 1.33f, (y - hh) * 1.33f, (x + hw) * 1.33f, (y + hh) * 1.33f);
 
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
 

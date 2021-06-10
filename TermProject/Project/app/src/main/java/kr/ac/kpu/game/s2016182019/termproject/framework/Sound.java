@@ -22,7 +22,7 @@ public class Sound {
     };
     private static HashMap<Integer, Integer> soundIdMap = new HashMap<Integer, Integer>();
     private static int bgmID = 0;
-    private static MediaPlayer mp;
+    public static MediaPlayer mp;
 
     public static void init(Context context) {
         AudioAttributes audioAttributes;
@@ -46,6 +46,10 @@ public class Sound {
         mp = MediaPlayer.create(context, R.raw.battle);
         mp.setLooping(true);
         mp.start();
+    }
+
+    public static void stop() {
+        mp.stop();
     }
 
 

@@ -49,8 +49,8 @@ public class Board implements GameObject {
     }
 
     public Board() {
-        this.x = GameView.view.getWidth() / 2;
-        this.y = GameView.view.getHeight() / 2;
+        this.x = (int) (GameView.view.getWidth() / 2 / 1.33f);
+        this.y = (int) (GameView.view.getHeight() / 2 / 1.33f);
         this.bitmap = new GameBitmap(R.mipmap.board);
 
         RectF bound = new RectF();
@@ -68,7 +68,7 @@ public class Board implements GameObject {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                blocks[i][j] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (j + 0.5) + offsetY), r.nextInt(7));
+                blocks[i][j] = new Block((int)((gridX * (i + 0.5) + offsetX) / 1.33f), (int)((gridY * (j + 0.5) + offsetY)/ 1.33f), r.nextInt(7));
             }
         }
     }
@@ -194,7 +194,7 @@ public class Board implements GameObject {
                     }
                     if (j < 7) {
                         if (blocks[i][j + 1] == null) {
-                            blocks[i][j].moveto((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (j + 1.5) + offsetY));
+                            blocks[i][j].moveto((int)((gridX * (i + 0.5) + offsetX)/ 1.33f), (int)((gridY * (j + 1.5) + offsetY)/1.33f));
                             blocks[i][j + 1] = blocks[i][j];
                             blocks[i][j] = null;
                             movingBlocks++;
@@ -223,8 +223,8 @@ public class Board implements GameObject {
         }
         for (int i = 0; i< 8;i++){
             if (blocks[i][0] == null){
-                blocks[i][0] = new Block((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (-0.5) + offsetY), r.nextInt(7));
-                blocks[i][0].moveto((int)(gridX * (i + 0.5) + offsetX), (int)(gridY * (0.5) + offsetY));
+                blocks[i][0] = new Block((int)((gridX * (i + 0.5) + offsetX)/ 1.33f), (int)((gridY * (-0.5) + offsetY)/1.33f), r.nextInt(7));
+                blocks[i][0].moveto((int)((gridX * (i + 0.5) + offsetX)/ 1.33f), (int)((gridY * (0.5) + offsetY)/1.33f));
             }
         }
 

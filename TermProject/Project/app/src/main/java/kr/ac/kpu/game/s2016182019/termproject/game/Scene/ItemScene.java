@@ -31,12 +31,12 @@ public class ItemScene extends Scene {
         int h = GameView.view.getHeight();
         initLayers(ItemScene.Layer.COUNT.ordinal());
 
-        add(ItemScene.Layer.bg, new ImageObject(R.mipmap.itemscene,w/2, 0 , 0.8f, h/2));
+        add(ItemScene.Layer.bg, new ImageObject(R.mipmap.itemscene,w/2, h/2 , 0.8f));
 
         Random r = new Random();
-        add(Layer.UI, new ItemUI(w / 2 - 500, 0, r.nextInt(ItemUI.items.length), h/2 + 100));
-        add(Layer.UI, new ItemUI(w / 2, 0, r.nextInt(ItemUI.items.length), h/2 + 100));
-        add(Layer.UI, new ItemUI(w / 2 + 500, 0, r.nextInt(ItemUI.items.length), h/2 + 100));
+        add(Layer.UI, new ItemUI((int) ((w / 2 ) / 1.33f)- 500, 0, r.nextInt(ItemUI.items.length), (int) ((h/2 )/1.33f)+ 100));
+        add(Layer.UI, new ItemUI((int) ((w / 2) / 1.33f), 0, r.nextInt(ItemUI.items.length), (int) ((h/2 )/1.33f)+ 100));
+        add(Layer.UI, new ItemUI((int) ((w / 2 ) / 1.33f)+ 500, 0, r.nextInt(ItemUI.items.length), (int) ((h/2 )/1.33f)+ 100));
 
 
     }

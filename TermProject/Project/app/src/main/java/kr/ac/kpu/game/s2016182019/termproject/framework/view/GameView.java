@@ -12,12 +12,13 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import kr.ac.kpu.game.s2016182019.termproject.framework.Sound;
 import kr.ac.kpu.game.s2016182019.termproject.framework.game.BaseGame;
 
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
 
-    public static float MULTIPLIER = 2;
+    public static float MULTIPLIER = 2.7f;
     private boolean running;
 
     private long lastFrame;
@@ -91,18 +92,21 @@ public class GameView extends View {
 
     public void pauseGame() {
         running = false;
+        Sound.mp.pause();
     }
 
     public void resumeGame() {
         if (!running) {
             running = true;
             lastFrame = 0;
+            Sound.mp.start();
             requestCallback();
         }
     }
 
     public void finishActivity() {
         Activity activity = getActivity();
+        Sound.stop();
         activity.finish();
     }
 

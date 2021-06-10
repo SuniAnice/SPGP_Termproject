@@ -1,6 +1,7 @@
 package kr.ac.kpu.game.s2016182019.termproject;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         basegame = new MainGame();
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

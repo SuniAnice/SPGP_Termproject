@@ -35,14 +35,14 @@ public class Text implements GameObject {
 
     public Text(int x, int y){
         bitmap = GameBitmap.load(R.mipmap.number_24x32);
-        this.x = x;
-        this.y = y;
+        this.x = (int) (x*1.33f);
+        this.y = (int) (y*1.33f);
     }
 
     public Text(int x, int y, int gy){
         bitmap = GameBitmap.load(R.mipmap.number_24x32);
-        this.x = x;
-        this.y = y;
+        this.x = (int) (x*1.33f);
+        this.y = (int) (y*1.33f);
         this.gy = gy;
     }
 

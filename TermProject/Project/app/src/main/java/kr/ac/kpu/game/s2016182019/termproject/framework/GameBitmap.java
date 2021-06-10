@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.util.DisplayMetrics;
 
 import java.util.HashMap;
 
@@ -31,6 +32,9 @@ public class GameBitmap {
     protected RectF dstRect = new RectF();
 
     public GameBitmap(int resId) {
+
+
+
         bitmap = load(resId);
     }
 
@@ -38,10 +42,10 @@ public class GameBitmap {
         int hw = getWidth() / 2;
         int hh = getHeight() / 2;
 
-        float dl = x - hw * GameView.MULTIPLIER;
-        float dt = y - hh * GameView.MULTIPLIER;
-        float dr = x + hw * GameView.MULTIPLIER;
-        float db = y + hh * GameView.MULTIPLIER;
+        float dl = x * 1.33f - hw * GameView.MULTIPLIER;
+        float dt = y * 1.33f - hh * GameView.MULTIPLIER;
+        float dr = x * 1.33f + hw * GameView.MULTIPLIER;
+        float db = y * 1.33f + hh * GameView.MULTIPLIER;
         dstRect.set(dl, dt, dr, db);
         canvas.drawBitmap(bitmap, null, dstRect, null);
     }
@@ -50,10 +54,10 @@ public class GameBitmap {
         int hw = getWidth() / 2;
         int hh = getHeight() / 2;
 
-        float dl = x - hw * GameView.MULTIPLIER * mul;
-        float dt = y - hh * GameView.MULTIPLIER * mul;
-        float dr = x + hw * GameView.MULTIPLIER * mul;
-        float db = y + hh * GameView.MULTIPLIER * mul;
+        float dl = x*1.33f - hw * GameView.MULTIPLIER * mul;
+        float dt = y*1.33f - hh * GameView.MULTIPLIER * mul;
+        float dr = x*1.33f + hw * GameView.MULTIPLIER * mul;
+        float db = y*1.33f + hh * GameView.MULTIPLIER * mul;
         dstRect.set(dl, dt, dr, db);
         canvas.drawBitmap(bitmap, null, dstRect, null);
     }
@@ -70,10 +74,10 @@ public class GameBitmap {
         int hw = getWidth() / 2;
         int hh = getHeight() / 2;
 
-        float dl = x - hw * GameView.MULTIPLIER;
-        float dt = y - hh * GameView.MULTIPLIER;
-        float dr = x + hw * GameView.MULTIPLIER;
-        float db = y + hh * GameView.MULTIPLIER;
+        float dl = x*1.33f - hw * GameView.MULTIPLIER;
+        float dt = y*1.33f - hh * GameView.MULTIPLIER;
+        float dr = x*1.33f + hw * GameView.MULTIPLIER;
+        float db = y*1.33f + hh * GameView.MULTIPLIER;
        rect.set(dl, dt, dr, db);
     }
 
@@ -81,10 +85,10 @@ public class GameBitmap {
         int hw = getWidth() / 2;
         int hh = getHeight() / 2;
 
-        float dl = x - hw * GameView.MULTIPLIER * mul;
-        float dt = y - hh * GameView.MULTIPLIER * mul;
-        float dr = x + hw * GameView.MULTIPLIER * mul;
-        float db = y + hh * GameView.MULTIPLIER * mul;
+        float dl = x*1.33f - hw * GameView.MULTIPLIER * mul;
+        float dt = y*1.33f - hh * GameView.MULTIPLIER * mul;
+        float dr = x*1.33f + hw * GameView.MULTIPLIER * mul;
+        float db = y*1.33f + hh * GameView.MULTIPLIER * mul;
         rect.set(dl, dt, dr, db);
     }
 }
