@@ -113,6 +113,9 @@ public class Enemy implements GameObject {
                 MainGame.get().push(new GameOverScene());
             }
         }
+        else {
+            hp -= player.thorn;
+        }
         currAttack = attack;
     }
 
@@ -122,7 +125,7 @@ public class Enemy implements GameObject {
         attackText.setNum(currAttack);
         turnText.setNum(MainScene.scene.board.turn);
 
-        if (hp <= 700)
+        if (hp <= 0)
         {
             MainGame.get().push(new ItemScene());
             MainScene.scene.player.score++;

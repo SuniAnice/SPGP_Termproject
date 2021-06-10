@@ -18,7 +18,8 @@ public class ItemUI implements GameObject, BoxCollidable {
     private GameBitmap bitmap;
 
     public static int[] items = {
-            R.mipmap.item1, R.mipmap.item2, R.mipmap.item3,
+            R.mipmap.item1, R.mipmap.item2, R.mipmap.item3, R.mipmap.item4, R.mipmap.item5,
+            R.mipmap.item6, R.mipmap.item7, R.mipmap.item8,
     };
 
     public ItemUI(int x, int y, int index, int gy) {
@@ -48,6 +49,21 @@ public class ItemUI implements GameObject, BoxCollidable {
                 break;
             case 2:
                 MainScene.scene.player.fire_orb++;
+                break;
+            case 3:
+                MainScene.scene.player.rainbow_orb++;
+                break;
+            case 4:
+                MainScene.scene.player.spell_damage += 5;
+                break;
+            case 5:
+                MainScene.scene.player.chaos_orb++;
+                break;
+            case 6:
+                MainScene.scene.player.maxHp += 10;
+                break;
+            case 7:
+                MainScene.scene.player.thorn += 5;
                 break;
             default:
                 break;

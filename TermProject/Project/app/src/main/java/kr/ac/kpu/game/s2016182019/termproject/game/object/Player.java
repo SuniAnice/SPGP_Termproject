@@ -26,6 +26,10 @@ public class Player implements GameObject {
     public int score = 0;
 
     public int fire_orb = 0;
+    public int rainbow_orb = 0;
+    public int spell_damage = 0;
+    public int chaos_orb = 0;
+    public int thorn = 0;
 
 
     public Player() {
@@ -38,13 +42,11 @@ public class Player implements GameObject {
 
 
     public void initialize() {
-        manaRed = 5 * fire_orb;
-        manaGreen = 0;
-        manaBlue = 0;
-        manaBlack = 0;
-        manaWhite = 0;
-        attack = 0;
-        defence = 0;
+        manaRed = 5 * fire_orb + rainbow_orb;
+        manaGreen = rainbow_orb;
+        manaBlue = rainbow_orb;
+        manaBlack = rainbow_orb;
+        manaWhite = rainbow_orb;
 
     }
     public void heal() {

@@ -38,8 +38,8 @@ public class Board implements GameObject {
     public Block blocks[][];
     private int selectX;
     private int selectY;
-    private boolean soundflag;
-    private boolean attackflag;
+    private boolean soundflag = false;
+    private boolean attackflag = false;
 
     public static Board get() {
         if (instance == null) {

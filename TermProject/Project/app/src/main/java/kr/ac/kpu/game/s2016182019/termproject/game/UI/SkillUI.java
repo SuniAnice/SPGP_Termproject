@@ -69,6 +69,7 @@ public class SkillUI implements GameObject, BoxCollidable {
                     }
 
                     Sound.play(R.raw.magic);
+                    MainScene.scene.enemy.hp -= MainScene.scene.player.spell_damage;
                 }
 
                 break;
@@ -86,6 +87,7 @@ public class SkillUI implements GameObject, BoxCollidable {
                         }
                     }
                     Sound.play(R.raw.magic);
+                    MainScene.scene.enemy.hp -= MainScene.scene.player.spell_damage;
 
                 }
                 break;
@@ -103,21 +105,28 @@ public class SkillUI implements GameObject, BoxCollidable {
                         }
                     }
                     Sound.play(R.raw.magic);
+                    MainScene.scene.enemy.hp -= MainScene.scene.player.spell_damage;
 
                 }
                 break;
             case 3:
                 if (MainScene.scene.player.useMana(0,0,0,10,0))
                 {
+                    Random r = new Random();
                     for (int i = 0; i < 8; i++) {
                         for (int j = 0; j < 8; j++) {
                             if (MainScene.scene.board.blocks[i][j] != null) {
-                                Random r = new Random();
                                 MainScene.scene.board.blocks[i][j].change(Block.blockType.values()[r.nextInt(7)]);
                             }
                         }
                     }
+                    for (int i = 0 ; i < MainScene.scene.player.chaos_orb * 5; i++) {
+                        int x = r.nextInt(8);
+                        int y = r.nextInt(8);
+                        MainScene.scene.board.blocks[x][y].boom = true;
+                    }
                     Sound.play(R.raw.magic);
+                    MainScene.scene.enemy.hp -= MainScene.scene.player.spell_damage;
 
                 }
                 break;
